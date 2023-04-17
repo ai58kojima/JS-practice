@@ -40,3 +40,30 @@ test('consoleの練習',() => {
 //cosnt a = 1;
 //const value = "値";
 //console.log(x); // => ReferenceError: x is not defined
+
+console.log(typeof "JavaScript"); // => "string"
+const str = "文字列";
+console.log(`これは${str}です`);//バッククォート「`」でないと動かない
+expect(str).toBe("文字列");//改行（\n）
+
+
+test('文字列の練習',() => {
+    const str1 = "文字列です";
+    const str2 = '文字列です';
+    expect(str1 === str2).toBe(true);
+
+    const str3 = `これは
+改行です`;
+    const str30 = `これは
+    改行です`;//インデントが入ったらエラーとなる。
+    const str4 = "これは\n改行です";
+    expect(str3 === str4).toBe(true);
+    console.log(str4);
+    console.log(str3);
+    console.log(str30);
+
+    const str5 = "これは${str1}。";
+    const str6 = `これは${str2}。`;
+    expect(str5).toBe("これは${str1}。");
+    expect(str6).toBe(`これは文字列です。`);
+});
