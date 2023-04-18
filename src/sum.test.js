@@ -67,3 +67,60 @@ test('文字列の練習',() => {
     expect(str5).toBe("これは${str1}。");
     expect(str6).toBe(`これは文字列です。`);
 });
+
+test('条件分岐の練習',() => {
+const num = 1;
+if (num > 10) {
+    console.log(`numは10より大きいです: ${num}`);
+} else {
+    console.log(`numは10以下です: ${num}`);
+}
+});
+
+
+test('elseの練習',() => {
+    const UruYear = function(year){
+if (year % 4 === 0) { // 4で割り切れる
+    if (year % 100 === 0) { // 100で割り切れる
+        if (year % 400 === 0) { // 400で割り切れる
+            console.log(`${year}年はうるう年です`);
+            return true;
+        } else {
+            console.log(`${year}年はうるう年ではありません`);
+            return false;
+        }
+    } else {
+        console.log(`${year}年はうるう年です`);
+        return true;
+    }
+} else {
+    console.log(`${year}年はうるう年ではありません`);
+    return false;
+}}
+expect(UruYear(2020)).toBe(true);
+expect(UruYear(2023)).toBe(false);
+expect(UruYear(2000)).toBe(true);
+expect(UruYear(2100)).toBe(false);
+});
+
+
+
+test('switchの練習',() => {
+const a = function(num){
+switch (num % 4) {
+    case 0:
+        return "グー";
+    case 1:
+        return "チョキ";
+    case 2:
+        return "パー";
+    case 3:
+        return "あいこ";
+}
+expect(a(0)).toBe("グー")
+expect(a(1)).toBe("チョキ")
+expect(a(2)).toBe("パー")
+expect(a(3)).toBe("あいこ")
+expect(a(4)).toBe("グー")
+expect(a(5)).toBe("チョキ")
+}});
