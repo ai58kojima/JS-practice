@@ -47,7 +47,7 @@ console.log(`これは${str}です`);//バッククォート「`」でないと�
 expect(str).toBe("文字列");//改行（\n）
 
 
-test('文字列の練習',() => {
+test('文字列の練習',() => { //⑤データ型とリテラル
     const str1 = "文字列です";
     const str2 = '文字列です';
     expect(str1 === str2).toBe(true);
@@ -67,6 +67,46 @@ test('文字列の練習',() => {
     expect(str5).toBe("これは${str1}。");
     expect(str6).toBe(`これは文字列です。`);
 });
+
+test('オブジェクトの練習',() => { //⑤データ型とリテラルの続き
+    const object={
+        address:"東京",
+        telephone:"000-0000",
+        age:20,
+        hasLicense:true,
+        nested:{value:1}//入れ子ネスト  掘り下げていける
+    }
+    expect(object.address).toBe("東京");
+    expect(object["telephone"]).toBe("000-0000");
+    expect(object.age).toBe(20);
+    expect(object.hasLicense).toBe(true);
+    expect(object.nested.value).toBe(1);
+
+});
+
+
+test('演算子の練習',() => {
+console.log(8 % 2);  // => 0
+console.log(10 / 0); // => Infinity
+const foo = null; //nullは「値がない」ということを表現する値
+console.log(foo); // => null
+console.log(+"文字列"); // => NaN
+
+const array = [1, 2];
+// aには`array`の0番目の値、bには1番目の値が代入される
+const [a, b] = array;
+console.log(a); // => 1
+console.log(b); // => 2
+
+const obj = {
+    "key": "value"
+};// プロパティ名`key`の値を、変数`key`として定義する
+const { key } = obj;
+console.log(key); // => "value"
+
+
+});
+
 
 test('条件分岐の練習',() => {
 const num = 1;
