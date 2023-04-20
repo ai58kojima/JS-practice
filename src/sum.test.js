@@ -81,7 +81,17 @@ test('オブジェクトの練習',() => { //⑤データ型とリテラルの�
     expect(object.age).toBe(20);
     expect(object.hasLicense).toBe(true);
     expect(object.nested.value).toBe(1);
+});
 
+test('配列の練習',() => { // 配列（Arrayオブジェクト）
+    const array123=["配列の練習",111,true,{age:20,address:"東京"}]//ブラケット{}＝オブジェクトリテラル
+    console.log(array123[0]);
+
+    expect(array123[0]).toBe("配列の練習");
+    expect(array123[1]).toBe(111);
+    expect(array123[2]).toBe(true);
+    expect(array123[3].age).toBe(20);
+    expect(array123[3].address).toBe("東京");
 });
 
 
