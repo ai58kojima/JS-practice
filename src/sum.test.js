@@ -174,3 +174,17 @@ expect(a(3)).toBe("あいこ")
 expect(a(4)).toBe("グー")
 expect(a(5)).toBe("チョキ")
 }});
+
+test('べき乗演算子の練習',() => {
+expect(3 ** 4).toBe(81);
+expect(Math.pow(3,4)).toBe(81);//べき乗演算子と同じ動作をするMath.powメソッド
+});
+
+test('分割代入 配列',() => {
+const array = [1,2,3];
+const[a,b,c] = array;//分割代入
+
+expect(a).toBe(1);
+expect(b).toBe(2);
+expect(c).toBe(3);
+});
