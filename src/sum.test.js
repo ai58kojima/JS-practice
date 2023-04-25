@@ -174,3 +174,37 @@ expect(a(3)).toBe("あいこ")
 expect(a(4)).toBe("グー")
 expect(a(5)).toBe("チョキ")
 }});
+
+test('べき乗演算子の練習',() => {
+expect(3 ** 4).toBe(81);
+expect(Math.pow(3,4)).toBe(81);//べき乗演算子と同じ動作をするMath.powメソッド
+});
+
+test('分割代入 配列',() => {
+const array = [1,2,3];
+const[a,b,c] = array;//分割代入
+
+expect(a).toBe(1);
+expect(b).toBe(2);
+expect(c).toBe(3);
+});
+
+test('分割代入 オブジェクト',() => {
+const obj = {
+"key" : "value"
+};
+const key = obj.key;
+expect(key).toBe("value");
+});
+
+test('分割代入 オブジェクト2',() => {
+const obj = {
+"key1" : "value1",
+"key2" : "value2"
+};
+
+const {key1,key2} = obj;
+expect(key1).toBe("value1");
+expect(key2).toBe("value2");
+expect({key1,key2}).toStrictEqual(obj);
+});
