@@ -116,6 +116,46 @@ test("演算子の練習", () => {
   console.log(key); // => "value"
 });
 
+test("べき乗演算子の練習", () => {
+    expect(3 ** 4).toBe(81);
+    expect(Math.pow(3, 4)).toBe(81); //べき乗演算子と同じ動作をするMath.powメソッド
+  });
+  
+  test("分割代入 配列", () => {
+    const array = [1, 2, 3];
+    const [a, b, c] = array; //分割代入
+  
+    expect(a).toBe(1);
+    expect(b).toBe(2);
+    expect(c).toBe(3);
+  });
+  
+  test("分割代入 オブジェクト", () => {
+    const obj = {
+      key: "value",
+    };
+    const key = obj.key;
+    expect(key).toBe("value");
+  });
+  
+  test("分割代入 オブジェクト2", () => {
+    const obj = {
+      key1: "value1",
+      key2: "value2",
+    };
+  
+    const { key1, key2 } = obj;
+    expect(key1).toBe("value1");
+    expect(key2).toBe("value2");
+    expect({ key1, key2 }).toStrictEqual(obj);
+  });
+  
+
+
+
+
+
+
 test("条件分岐の練習", () => {
   const num = 1;
   if (num > 10) {
@@ -175,36 +215,3 @@ test("switchの練習", () => {
   };
 });
 
-test("べき乗演算子の練習", () => {
-  expect(3 ** 4).toBe(81);
-  expect(Math.pow(3, 4)).toBe(81); //べき乗演算子と同じ動作をするMath.powメソッド
-});
-
-test("分割代入 配列", () => {
-  const array = [1, 2, 3];
-  const [a, b, c] = array; //分割代入
-
-  expect(a).toBe(1);
-  expect(b).toBe(2);
-  expect(c).toBe(3);
-});
-
-test("分割代入 オブジェクト", () => {
-  const obj = {
-    key: "value",
-  };
-  const key = obj.key;
-  expect(key).toBe("value");
-});
-
-test("分割代入 オブジェクト2", () => {
-  const obj = {
-    key1: "value1",
-    key2: "value2",
-  };
-
-  const { key1, key2 } = obj;
-  expect(key1).toBe("value1");
-  expect(key2).toBe("value2");
-  expect({ key1, key2 }).toStrictEqual(obj);
-});
