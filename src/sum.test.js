@@ -208,3 +208,6 @@ test("分割代入 オブジェクト2", () => {
   expect(key2).toBe("value2");
   expect({ key1, key2 }).toStrictEqual(obj);
 });
+test("わざと間違える", () => {
+  expect(1).toBe("value1");
+});
