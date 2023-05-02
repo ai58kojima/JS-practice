@@ -118,14 +118,21 @@ test("演算子の練習", () => {
 
 function addPrefix(text, prefix) {
   // `prefix`が指定されていない場合は"デフォルト:"を付ける
-  const pre = typeof prefix === "string" ? prefix : "デフォルト:";
+  const pre = typeof prefix === "string" ? prefix : "デフォルト";
+  //const pre = ？？
+  //1）typeof prefix === "string"  => falseと判定
+  //2)"string" ? prefix : "デフォルト";  => falseは:の右側を取得 => "デフォルト"
+  //3)const pre = "デフォルト";
   return pre + text;
+  //return "デフォルト" + "abc" =>"デフォルト:abc" =>expect(addPrefix("abc")).toBe("デフォルト:abc");
 }
+//コツ！！　一個一個 区切り、法則に当てはめて解く
 
 test("条件(三項)演算子の練習", () => {
+  //const valueA = true ? "A" : "B";  => "A" 左を取得 =>結果 valueA =　Aとなる。
   expect(typeof "文字列").toBe("string");
   expect(typeof undefined).toBe("undefined");
-  expect(addPrefix("abc")).toBe("デフォルト:abc");
+  expect(addPrefix("abc", undefined)).toBe("デフォルト:abc");
   expect(addPrefix("abc", "d")).toBe("dabc");
 });
 
