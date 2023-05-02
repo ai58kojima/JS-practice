@@ -116,6 +116,21 @@ test("演算子の練習", () => {
   console.log(key); // => "value"
 });
 
+
+function addPrefix(text, prefix) {
+  // `prefix`が指定されていない場合は"デフォルト:"を付ける
+  const pre = typeof prefix === "string" ? prefix : "デフォルト:";
+  return pre + text;
+}
+
+test("条件(三項)演算子の練習", () => {
+expect(typeof "文字列").toBe("string");
+expect(typeof undefined).toBe("undefined");
+expect(addPrefix("abc")).toBe( "デフォルト:abc");
+expect(addPrefix("abc","d")).toBe( "dabc");
+});
+
+
 test("べき乗演算子の練習", () => {
     expect(3 ** 4).toBe(81);
     expect(Math.pow(3, 4)).toBe(81); //べき乗演算子と同じ動作をするMath.powメソッド
@@ -149,12 +164,6 @@ test("べき乗演算子の練習", () => {
     expect(key2).toBe("value2");
     expect({ key1, key2 }).toStrictEqual(obj);
   });
-  
-
-
-
-
-
 
 test("条件分岐の練習", () => {
   const num = 1;
