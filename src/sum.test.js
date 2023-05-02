@@ -132,7 +132,7 @@ test("条件(三項)演算子の練習", () => {
   //const valueA = true ? "A" : "B";  => "A" 左を取得 =>結果 valueA =　Aとなる。
   expect(typeof "文字列").toBe("string");
   expect(typeof undefined).toBe("undefined");
-  expect(addPrefix("abc", undefined)).toBe("デフォルト:abc");
+  expect(addPrefix("abc")).toBe("デフォルトabc");
   expect(addPrefix("abc", "d")).toBe("dabc");
 });
 
