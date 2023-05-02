@@ -116,6 +116,32 @@ test("演算子の練習", () => {
   console.log(key); // => "value"
 });
 
+function addPrefix(text, prefix) {
+  // `prefix`が指定されていない場合は"デフォルト:"を付ける
+  const pre = typeof prefix === "string" ? prefix : "デフォルト:";
+  return pre + text;
+}
+
+test("条件(三項)演算子の練習", () => {
+expect(typeof "文字列").toBe("string");
+expect(typeof undefined).toBe("undefined");
+expect(addPrefix("abc")).toBe( "デフォルト:abc");
+expect(addPrefix("abc","d")).toBe( "dabc");
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 test("条件分岐の練習", () => {
   const num = 1;
   if (num > 10) {
