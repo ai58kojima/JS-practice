@@ -170,35 +170,21 @@ test("分割代入 オブジェクト2", () => {
 });
 
 //➆暗黙的な型変換
-test("Numberコンストラクタ関数の練習", () => {//文字列から数値へ明示的に変換する関数
-  expect(Number.parseInt("10",10)).toBe(10);//文字列の"10"を数字に変換するプログラム //toBeメソッドは、厳密等価演算子
-  expect(Number.parseInt("10",10)).not.toBe("10");//「Number.parseInt」は文字列から整数だけをパースする
-  expect(Number.parseInt("3.14",10)).toBe(3);
+test("Numberコンストラクタ関数の練習", () => {
+  //文字列から数値へ明示的に変換する関数
+  expect(Number.parseInt("10", 10)).toBe(10); //文字列の"10"を数字に変換するプログラム //toBeメソッドは、厳密等価演算子
+  expect(Number.parseInt("10", 10)).not.toBe("10"); //「Number.parseInt」は文字列から整数だけをパースする
+  expect(Number.parseInt("3.14", 10)).toBe(3);
   expect(Number.parseInt("10")).toBe(10);
 
-  expect(Number.parseFloat("3.14",10)).toBe(3.14);//「Number.parseFloat」は文字列から浮動小数点数をパースする
-  expect(Number.parseFloat("3.14",10)).not.toBe("10");
+  expect(Number.parseFloat("3.14", 10)).toBe(3.14); //「Number.parseFloat」は文字列から浮動小数点数をパースする
+  expect(Number.parseFloat("3.14", 10)).not.toBe("10");
   expect(Number.parseFloat("3.14")).toBe(3.14);
-  
+
   expect(Number.parseInt("文字")).toBe(NaN);
-  expect(Number.isNaN(Number.parseInt("文字",10))).toBe(true); //Number.isNaN(x):メソッド実際に値がNaNかを判定する //boolean：真偽値を返す　//NaNは[Not a Number]だけどNumber型
+  expect(Number.isNaN(Number.parseInt("文字", 10))).toBe(true); //Number.isNaN(x):メソッド実際に値がNaNかを判定する //boolean：真偽値を返す　//NaNは[Not a Number]だけどNumber型
   //➀引数(Number.parseInt("文字",10))の評価結果をisNaN（）に渡す　➁isNaNは引き数（）内がNaNかどうかを判定　➂NaNなのでtrueが返ってくる
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 test("条件分岐の練習", () => {
   const num = 1;
@@ -238,5 +224,6 @@ test("elseの練習", () => {
   expect(UruYear(2100)).toBe(false);
 });
 
-test("switchの練習", () => {//0509
+test("switchの練習", () => {
+  //0509
 });
