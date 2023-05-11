@@ -1,6 +1,6 @@
 const sum = require("./sum");
 
-test("adds 1 + 2 to equal 3", () => {
+test("add 1 + 2 to equal 3", () => {
   expect(sum(1, 2)).toBe(3);
 });
 
@@ -37,7 +37,7 @@ test("consoleの練習", () => {
   console.log(total);
 });
 //エラー：console.log(1; // => SyntaxError: missing ) after argument list
-//cosnt a = 1;
+//const a = 1;
 //const value = "値";
 //console.log(x); // => ReferenceError: x is not defined
 
@@ -116,23 +116,22 @@ test("演算子の練習", () => {
   console.log(key); // => "value"
 });
 
-function addPrefix(text, prefix) {
-  // `prefix`が指定されていない場合は"デフォルト:"を付ける
-  const pre = typeof prefix === "string" ? prefix : "デフォルト";
-  //const pre = ？？
-  //1）typeof prefix === "string"  => falseと判定
-  //2)"string" ? prefix : "デフォルト";  => falseは:の右側を取得 => "デフォルト"
-  //3)const pre = "デフォルト";
-  return pre + text;
-  //return "デフォルト" + "abc" =>"デフォルト:abc" =>expect(addPrefix("abc")).toBe("デフォルト:abc");
-}
 //コツ！！　一個一個 区切り、法則に当てはめて解く
-
+//const valueA = true ? "A" : "B";  => "A" 左を取得 =>結果 valueA =　Aとなる。
 test("条件(三項)演算子の練習", () => {
-  //const valueA = true ? "A" : "B";  => "A" 左を取得 =>結果 valueA =　Aとなる。
+  function addPrefix(text, prefix) {
+    // `prefix`が指定されていない場合は"デフォルト:"を付ける
+    const pre = typeof prefix === "string" ? prefix : "デフォルト";
+    //const pre = ？？
+    //1）typeof prefix === "string"  => falseと判定
+    //2)"string" ? prefix : "デフォルト";  => falseは:の右側を取得 => "デフォルト"
+    //3)const pre = "デフォルト";
+    return pre + text;
+    //return "デフォルト" + "abc"
+  }
   expect(typeof "文字列").toBe("string");
   expect(typeof undefined).toBe("undefined");
-  expect(addPrefix("abc")).toBe("デフォルトabc");
+  expect(addPrefix("abc")).toBe("デフォルトabc"); //"デフォルト:abc"
   expect(addPrefix("abc", "d")).toBe("dabc");
 });
 
@@ -185,6 +184,58 @@ test("Numberコンストラクタ関数の練習", () => {
   expect(Number.isNaN(Number.parseInt("文字", 10))).toBe(true); //Number.isNaN(x):メソッド実際に値がNaNかを判定する //boolean：真偽値を返す　//NaNは[Not a Number]だけどNumber型
   //➀引数(Number.parseInt("文字",10))の評価結果をisNaN（）に渡す　➁isNaNは引き数（）内がNaNかどうかを判定　➂NaNなのでtrueが返ってくる
 });
+
+//➇関数と宣言
+test("function関数の練習", () => {
+  function double(num) {
+    //function 関数名(仮引数1, 仮引数2) //関数宣言の時は「仮引数：値が入る変数」 //ここでは関数を定義している
+    // ｛｝内は関数が呼び出されたときの処理
+    return num * 2; // double関数の返り値、numに(10)を入れてreturnを実行されると、20が返ってくる
+  }
+  console.log(double(10)); //const (関数の結果) = 関数名(引数1, 引数2);　//関数呼び出しの時は「引数」//=> 関数の返り値
+  expect(double(10)).toBe(20);
+});
+
+test("echo関数の練習", () => {
+  function echo(x) {
+    //引数として渡した値をそのまま返す「echo関数」
+    return x;
+  }
+  expect(echo(1)).toBe(1);
+  expect(echo()).toBe(undefined);
+});
+
+test("argumentsToArray関数の練習", () => {
+  function argumentsToArray(x, y) {
+    //2つの引数を受け取り、それを配列として返す「argumentsToArray関数」
+    return [x, y];
+  }
+  expect(argumentsToArray(1, 2)).toBe[(1, 2)]; //expect関数　toBe関数?　Q！配列[] ()はいらない
+  expect(argumentsToArray(1)).toBe[(1, undefined)];
+});
+
+test("デフォルト引数", () => {
+  //「仮引数 = デフォルト値」
+  function addPrefix2(text, prefix = "デフォルト:") {
+    return prefix + text;
+  }
+  expect(addPrefix2("abc")).toBe("デフォルト:abc");
+  expect(addPrefix2("abc", "d")).toBe("dabc");
+});
+
+test("可変長引数", () => {
+  //「Math.max(...args引数)」受取引数の中で最大数値を返す関数
+  const max = Math.max(10, 2, 3);
+  expect(max).toBe(10);
+
+  //Rest parametersは、仮引数名の前に...をつけた仮引数のことで、残余引数とも呼ばれる。
+  function fn(...args) {
+    expect(args).toBe[("a", "b", "c")]; //関数定義
+  }
+  fn("a", "b", "c"); //関数実行
+});
+
+//次回ここから～
 
 test("条件分岐の練習", () => {
   const num = 1;
