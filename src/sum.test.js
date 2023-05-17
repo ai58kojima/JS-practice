@@ -71,11 +71,11 @@ test("文字列の練習", () => {
 test("オブジェクトの練習", () => {
   //⑤データ型とリテラルの続き
   const object = {
-    address: "東京",
-    telephone: "000-0000",
-    age: 20,
-    hasLicense: true,
-    nested: { value: 1 }, //入れ子ネスト  掘り下げていける
+    address: "東京", // プロパティ: データ(値)　//文字列
+    telephone: "000-0000", //文字列
+    age: 20, //number
+    hasLicense: true, //Boolean ブーリアン型
+    nested: { value: 1 }, //入れ子=ネスト  掘り下げていける
   };
   expect(object.address).toBe("東京");
   expect(object["telephone"]).toBe("000-0000");
@@ -235,8 +235,37 @@ test("可変長引数", () => {
   fn("a", "b", "c"); //関数実行
 });
 
-//次回ここから～
+test("Arrow Functionの書き方", () => {
+  //関数を値として使う方法 //aを2乗する関数
+  const a = function (x) {
+    return x * x;
+  };
+  const b = (x) => {
+    return x * x;
+  };
+  const c = (x) => x * x;
+  expect(a(5)).toBe(25); //定数aに(x)5の引数を渡して、条件実行すると25になる想定。
+  expect(b(5)).toBe(25);
+  expect(c(5)).toBe(25);
+});
 
+test("コールバック関数とArrow Function練習", () => {
+  //関数の引数に関数を返す
+  const array = [1, 2, 3];
+  const doubleArray = array.map((value) => value * 2); //「mapメソッド」…配列要素を順にコールバック関数へ渡し、その関数が返した値を新しい配列にして返すメソッド。
+  // Arrow Functionは匿名関数。代入を矢印arrow => で表し、{ return x * x; } ＝ Arrow Functionのみ、returnとブロックを省略できる
+  expect(doubleArray).toEqual([2, 4, 6]); //.toBeマッチャ―の一つ
+});
+
+const obj = {
+  //メソッドの定義方法  →　メソッド名(){ /*メソッドの処理*/ }
+  method() {
+    return "this is method";
+  },
+};
+expect(obj.method()).toBe("this is method"); // 関数呼出しと同様「　オブジェクト.メソッド名()　」でメソッド呼出し
+
+//ここから～
 test("条件分岐の練習", () => {
   const num = 1;
   if (num > 10) {
