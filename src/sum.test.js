@@ -265,7 +265,25 @@ const obj = {
 };
 expect(obj.method()).toBe("this is method"); // 関数呼出しと同様「　オブジェクト.メソッド名()　」でメソッド呼出し
 
-//ここから～
+//➉条件分岐
+test("else ifの練習", () => {//versionを引数として受け取る関数を定義
+  const A = function (version) { //Aは関数
+    if (version === "ES5"){
+      return "ECMAScript 5";//この後の処理は実行されずに、関数から抜ける処理になる
+    } else if(version === "ES6"){
+      return "ECMAScript 2015";
+    } else if (version === "ES7"){
+      return "ECMAScript 2016";
+    };
+    return "unknown";
+  };
+    //関数Aを呼び出して、返り値を確認する
+    expect(A("ES5")).toBe("ECMAScript 5");
+    expect(A("ES6")).toBe("ECMAScript 2015");
+    expect(A("ES7")).toBe("ECMAScript 2016");
+    expect(A(5)).toBe("unknown");
+});
+
 test("条件分岐の練習", () => {
   const num = 1;
   if (num > 10) {
