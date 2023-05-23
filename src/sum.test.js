@@ -31,10 +31,8 @@ test("letの練習", () => {
 });
 
 test("consoleの練習", () => {
-  console.log(1); // => 1
-  console.log(1 + 1); // => 2
   const total = 42 + 42; //=> 84
-  console.log(total);
+  //console.log(total);
 });
 //エラー：console.log(1; // => SyntaxError: missing ) after argument list
 //const a = 1;
@@ -51,17 +49,11 @@ test("文字列の練習", () => {
   const str1 = "文字列です";
   const str2 = "文字列です";
   expect(str1 === str2).toBe(true);
-
   const str3 = `これは
 改行です`;
-  const str30 = `これは
-    改行です`; //インデントが入ったらエラーとなる。
+  //インデントが入ったらエラーとなる。
   const str4 = "これは\n改行です";
   expect(str3 === str4).toBe(true);
-  console.log(str4);
-  console.log(str3);
-  console.log(str30);
-
   const str5 = "これは${str1}。";
   const str6 = `これは${str2}。`;
   expect(str5).toBe("これは${str1}。");
@@ -87,8 +79,7 @@ test("オブジェクトの練習", () => {
 test("配列の練習", () => {
   // 配列（Arrayオブジェクト）
   const array123 = ["配列の練習", 111, true, { age: 20, address: "東京" }]; //ブラケット{}＝オブジェクトリテラル
-  console.log(array123[0]);
-
+  //console.log(array123[0]);
   expect(array123[0]).toBe("配列の練習");
   expect(array123[1]).toBe(111);
   expect(array123[2]).toBe(true);
@@ -106,8 +97,8 @@ test("演算子の練習", () => {
   const array = [1, 2];
   // aには`array`の0番目の値、bには1番目の値が代入される
   const [a, b] = array;
-  console.log(a); // => 1
-  console.log(b); // => 2
+  //console.log(a); // => 1
+  //console.log(b); // => 2
 
   const obj = {
     key: "value",
@@ -266,62 +257,110 @@ const obj = {
 expect(obj.method()).toBe("this is method"); // 関数呼出しと同様「　オブジェクト.メソッド名()　」でメソッド呼出し
 
 //➉条件分岐
-test("else ifの練習", () => {//versionを引数として受け取る関数を定義
-  const A = function (version) { //Aは関数
-    if (version === "ES5"){
-      return "ECMAScript 5";//この後の処理は実行されずに、関数から抜ける処理になる
-    } else if(version === "ES6"){
+test("else ifの練習", () => {
+  //versionを引数として受け取る関数を定義
+  const A = function (version) {
+    //Aは関数
+    if (version === "ES5") {
+      return "ECMAScript 5"; //この後の処理は実行されずに、関数から抜ける処理になる
+    } else if (version === "ES6") {
       return "ECMAScript 2015";
-    } else if (version === "ES7"){
+    } else if (version === "ES7") {
       return "ECMAScript 2016";
-    };
+    }
     return "unknown";
   };
-    //関数Aを呼び出して、返り値を確認する
-    expect(A("ES5")).toBe("ECMAScript 5");
-    expect(A("ES6")).toBe("ECMAScript 2015");
-    expect(A("ES7")).toBe("ECMAScript 2016");
-    expect(A(5)).toBe("unknown");
+  //関数Aを呼び出して、返り値を確認する
+  expect(A("ES5")).toBe("ECMAScript 5");
+  expect(A("ES6")).toBe("ECMAScript 2015");
+  expect(A("ES7")).toBe("ECMAScript 2016");
+  expect(A(5)).toBe("unknown");
 });
 
-test("条件分岐の練習", () => {
-  const num = 1;
-  if (num > 10) {
-    console.log(`numは10より大きいです: ${num}`);
-  } else {
-    console.log(`numは10以下です: ${num}`);
-  }
-});
-
-test("elseの練習", () => {
-  const UruYear = function (year) {
+test("elseの練習1", () => {
+  const Year = function (year) {
+    //年数を引数にとって、うるう年だったらtrueを返し、そうでなければfalseを返す関数
     if (year % 4 === 0) {
       // 4で割り切れる
       if (year % 100 === 0) {
         // 100で割り切れる
         if (year % 400 === 0) {
           // 400で割り切れる
-          console.log(`${year}年はうるう年です`);
+          //console.log(`${year}年はうるう年です`);
           return true;
         } else {
-          console.log(`${year}年はうるう年ではありません`);
+          //console.log(`${year}年はうるう年ではありません`);
           return false;
         }
       } else {
-        console.log(`${year}年はうるう年です`);
+        //console.log(`${year}年はうるう年です`);
         return true;
       }
     } else {
-      console.log(`${year}年はうるう年ではありません`);
+      //console.log(`${year}年はうるう年ではありません`);
       return false;
     }
   };
-  expect(UruYear(2020)).toBe(true);
-  expect(UruYear(2023)).toBe(false);
-  expect(UruYear(2000)).toBe(true);
-  expect(UruYear(2100)).toBe(false);
+  //Year(2000); //2000年はうるう年です
+  expect(Year(2020)).toBe(true);
+  expect(Year(2023)).toBe(false);
+  expect(Year(2000)).toBe(true);
 });
 
-test("switchの練習", () => {
-  //0509
+test("elseの練習2", () => {
+  const Year2 = function (year) {
+    if (year % 400 === 0) {
+      return true;
+    } else if (year % 100 === 0) {
+      return false;
+    } else if (year % 4 === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  expect(Year2(2020)).toBe(true);
+  expect(Year2(2023)).toBe(false);
+  expect(Year2(2000)).toBe(true);
+});
+
+test("switchの練習1", () => {
+  const A = function (version) {
+    switch (version) {
+      case "ES5":
+        return "ECMAScript 5";
+      case "ES6":
+        return "ECMAScript 2015";
+      case "ES7":
+        return "ECMAScript 2016";
+      default:
+        return "unknown";
+    }
+  };
+  expect(A("ES5")).toBe("ECMAScript 5");
+});
+
+//数字を入れて、余りが0だったら「グー」・余りが「1＝チョキ・2＝パー・3＝あいこ」と返す関数
+test("switchの練習2", () => {
+  const Janken = function (num) {
+    switch (
+      num % 4 //(式)
+    ) {
+      case 0: //引数の計算結果の余りが０になる場合
+        return "グー";
+      case 1:
+        return "チョキ";
+      case 2:
+        return "パー";
+      case 3:
+        return "あいこ";
+      default:
+        return "unknown";
+    }
+  };
+  expect(Janken(0)).toBe("グー");
+  expect(Janken(1)).toBe("チョキ");
+  expect(Janken(2)).toBe("パー");
+  expect(Janken(3)).toBe("あいこ");
+  expect(Janken(4)).toBe("グー");
 });
