@@ -69,8 +69,8 @@ test("オブジェクトの練習", () => {
     hasLicense: true, //Boolean ブーリアン型
     nested: { value: 1 }, //入れ子=ネスト  掘り下げていける
   };
-  expect(object.address).toBe("東京");
-  expect(object["telephone"]).toBe("000-0000");
+  expect(object.address).toBe("東京"); //ドット記法（オブジェクトの取出し方1）
+  expect(object["telephone"]).toBe("000-0000"); //ブラケット記法（オブジェクトの取出し方2）
   expect(object.age).toBe(20);
   expect(object.hasLicense).toBe(true);
   expect(object.nested.value).toBe(1);
@@ -278,7 +278,7 @@ test("else ifの練習", () => {
 });
 
 test("elseの練習1", () => {
-  const Year = function (year) {
+  const isLeapYear = function (year) {
     //年数を引数にとって、うるう年だったらtrueを返し、そうでなければfalseを返す関数
     if (year % 4 === 0) {
       // 4で割り切れる
@@ -301,10 +301,10 @@ test("elseの練習1", () => {
       return false;
     }
   };
-  //Year(2000); //2000年はうるう年です
-  expect(Year(2020)).toBe(true);
-  expect(Year(2023)).toBe(false);
-  expect(Year(2000)).toBe(true);
+  //isLeapYear (2000); //2000年はうるう年です
+  expect(isLeapYear(2020)).toBe(true);
+  expect(isLeapYear(2023)).toBe(false);
+  expect(isLeapYear(2000)).toBe(true);
 });
 
 test("elseの練習2", () => {
@@ -363,4 +363,73 @@ test("switchの練習2", () => {
   expect(Janken(2)).toBe("パー");
   expect(Janken(3)).toBe("あいこ");
   expect(Janken(4)).toBe("グー");
+});
+
+//⑾ループと反復処理
+test("反復処理の練習1", () => {
+  //for文 (初期化式; 条件式; 増分式) {　}
+  function sum(max) {
+    let total = 0;
+    for (let i = 0; i < max; i++) {
+      total += i + 1; //total = total + i + 1
+    }
+    return total;
+  }
+  expect(sum(4)).toBe(10);
+  expect(sum(10)).toBe(55);
+});
+
+//スコープが違うから、上記の定義は反映されない
+test("反復処理の練習2", () => {
+  function sum(numbers) {
+    //15, 250, 350
+    let total = 0;
+    for (let i = 0; i < numbers.length; i++) {
+      //0<3 ➡　0.1.2
+      //numbersが配列[object箱.lengthプロパティ=中身]・length:配列の長さ
+      total = total + numbers[i]; //0=0+15[0]/0=0+250[1]//0=0+350[2]
+    }
+    return total;
+  }
+  expect(sum([])).toBe(0);
+  expect(sum([1])).toBe(1);
+  expect(sum([1, 2, 3])).toBe(6);
+  expect(sum([15, 250, 350])).toBe(615);
+});
+
+test("break処理の練習", () => {
+  //break文:if文の中で評価結果がtrueになった時点で、breakすると処理中のループを抜けられる。
+  function isEvenIncluded(numbers) {
+    let isEvenIncluded = false;
+    for (let i = 0; i < numbers.length; i++) {
+      if (numbers[i] % 2 === 0) {
+        isEvenIncluded = true;
+        break;
+      }
+    }
+    return isEvenIncluded;
+  }
+  expect(isEvenIncluded([1])).toBe(false);
+  expect(isEvenIncluded([])).toBe(false);
+  expect(isEvenIncluded([1, 2, 3])).toBe(true);
+});
+
+test("breakからretureの書き換え練習", () => {
+  //return文:ある条件になった場合に、現在の関数を終了させることができる(こちらがシンプルで推奨！)
+  function isEvenIncluded(numbers) {
+    for (let i = 0; i < numbers.length; i++) {
+      if (numbers[i] % 2 === 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+  expect(isEvenIncluded([1])).toBe(false);
+  expect(isEvenIncluded([])).toBe(false);
+  expect(isEvenIncluded([1, 2, 3])).toBe(true);
+  //function some(callback) {　→　→　→　→　→コールバック関数：外で定義した関数を、引数として他の関数内で呼び出される関数。
+  //for(let i = 0; i < array.length; i++) {
+  //if(callback(array[i])) { return true; }
+  //}
+  //return false;}
 });
