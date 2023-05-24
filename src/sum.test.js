@@ -382,19 +382,23 @@ test("反復処理の練習1", () => {
 //スコープが違うから、上記の定義は反映されない
 test("反復処理の練習2", () => {
   function sum(numbers) {
+    //15, 250, 350
     let total = 0;
     for (let i = 0; i < numbers.length; i++) {
+      //0<3 ➡　0.1.2
       //numbersが配列[object箱.lengthプロパティ=中身]・length:配列の長さ
-      total += numbers[i]; //total = total + numbers[i]
+      total = total + numbers[i]; //0=0+15[0]/0=0+250[1]//0=0+350[2]
     }
     return total;
   }
   expect(sum([])).toBe(0);
   expect(sum([1])).toBe(1);
-  expect(sum([1, 2, 3])).toBe(6); 
+  expect(sum([1, 2, 3])).toBe(6);
+  expect(sum([15, 250, 350])).toBe(615);
 });
 
 test("break処理の練習", () => {
+  //break文:if文の中で評価結果がtrueになった時点で、breakすると処理中のループを抜けられる。
   function isEvenIncluded(numbers) {
     let isEvenIncluded = false;
     for (let i = 0; i < numbers.length; i++) {
@@ -408,4 +412,24 @@ test("break処理の練習", () => {
   expect(isEvenIncluded([1])).toBe(false);
   expect(isEvenIncluded([])).toBe(false);
   expect(isEvenIncluded([1, 2, 3])).toBe(true);
+});
+
+test("breakからretureの書き換え練習", () => {
+  //return文:ある条件になった場合に、現在の関数を終了させることができる(こちらがシンプルで推奨！)
+  function isEvenIncluded(numbers) {
+    for (let i = 0; i < numbers.length; i++) {
+      if (numbers[i] % 2 === 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+  expect(isEvenIncluded([1])).toBe(false);
+  expect(isEvenIncluded([])).toBe(false);
+  expect(isEvenIncluded([1, 2, 3])).toBe(true);
+  //function some(callback) {　→　→　→　→　→コールバック関数：外で定義した関数を、引数として他の関数内で呼び出される関数。
+  //for(let i = 0; i < array.length; i++) {
+  //if(callback(array[i])) { return true; }
+  //}
+  //return false;}
 });
