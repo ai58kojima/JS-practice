@@ -474,3 +474,37 @@ test("some/filterの練習", () => {
   //arrayから奇数のみを集める
   expect(array.filter((number) => number % 2 !== 0)).toStrictEqual([1, 3, 5]); //
 });
+
+test("オブジェクトの練習", () => {
+  //2で割った余りが0かどうか
+  const obj = {};
+  expect(Object.keys(obj)).toStrictEqual([]);
+  const blueGreen = "blue-green";
+  const colors = {
+    red: "Red",
+    green: "Green",
+    blue: "Blue",
+    [blueGreen]: "Blue-Green",
+  };
+  expect(Object.keys(colors).length).toStrictEqual(4);
+  expect(colors.red).toStrictEqual("Red");
+  expect(colors.green).toStrictEqual("Green");
+  expect(colors.blue).toStrictEqual("Blue");
+  expect(colors["blue-green"]).toStrictEqual("Blue-Green");
+
+  //省略Ver.
+  const AAA = "あああ";
+  const A1 = {
+    AAA: AAA,
+  };
+  const A2 = {
+    AAA,
+  };
+  expect(A1.AAA === A2.AAA).toStrictEqual(true);
+  expect(A1).toStrictEqual(A2);
+
+  //プロパティの追加
+  colors.orange = "Orange";
+  expect(colors.orange).toStrictEqual("Orange");
+  //colors["bule-green"]= "Bule-Green";
+});
