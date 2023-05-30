@@ -475,8 +475,8 @@ test("some/filterの練習", () => {
   expect(array.filter((number) => number % 2 !== 0)).toStrictEqual([1, 3, 5]); //
 });
 
+//⑿オブジェクトの練習
 test("オブジェクトの練習", () => {
-  //2で割った余りが0かどうか
   const obj = {};
   expect(Object.keys(obj)).toStrictEqual([]);
   const blueGreen = "blue-green";
@@ -507,4 +507,20 @@ test("オブジェクトの練習", () => {
   colors.orange = "Orange";
   expect(colors.orange).toStrictEqual("Orange");
   //colors["bule-green"]= "Bule-Green";
+});
+
+//(問1)undefinedでチェックする方法
+//(問2)Object.hasOwnを呼び出す練習
+//(問3)Object.keys, Object.values, Object.entiriesを呼び出してテストコードで動きを確認してみる
+test("プロパティチェックの練習", () => {
+  const obj = {
+    one: 1,
+  };
+  expect(obj.one).toStrictEqual(1);
+  expect(obj.two).toStrictEqual(undefined);
+  expect(Object.hasOwn(obj, "one")).toStrictEqual(true); //Object.hasOwn = 真偽値で返す
+  expect(Object.hasOwn(obj, "two")).toStrictEqual(false);
+  expect(Object.keys(obj)).toStrictEqual(["one"]); //Object.keys = キーを返す
+  expect(Object.values(obj)).toStrictEqual([1]); //Object.value = 値を返す
+  expect(Object.entries(obj)).toStrictEqual([["one", 1]]); //Object.value = [キー,値]を配列にして返す
 });
