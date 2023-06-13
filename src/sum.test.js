@@ -524,3 +524,33 @@ test("プロパティチェックの練習", () => {
   expect(Object.values(obj)).toStrictEqual([1]); //Object.value = 値を返す
   expect(Object.entries(obj)).toStrictEqual([["one", 1]]); //Object.value = [キー,値]を配列にして返す
 });
+
+test("Object.assignメソッド/spread構文の練習", () => {
+  const a = {
+    one: 1,
+    two: 2,
+    three: 3,
+  };
+  const b = {
+    four: 4,
+    five: 5,
+    three: 30,
+  };
+  expect(Object.assign({}, a, b)).toStrictEqual({
+    //マージされて3は上書きされる
+    one: 1,
+    two: 2,
+    three: 30,
+    four: 4,
+    five: 5,
+  });
+  expect({ ...a, ...b, six: 6 }).toStrictEqual({
+    one: 1,
+    two: 2,
+    three: 30,
+    four: 4,
+    five: 5,
+    six: 6,
+  });
+});
+//次回は「プロトタイプメソッドとインスタンスメソッドの優先順位」～
