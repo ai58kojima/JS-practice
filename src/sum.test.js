@@ -529,19 +529,20 @@ test("Object.assignメソッド/spread構文の練習", () => {
   const a = {
     one: 1,
     two: 2,
-    three: 3
+    three: 3,
   };
   const b = {
     four: 4,
     five: 5,
-    three: 30
+    three: 30,
   };
-  expect(Object.assign({}, a, b)).toStrictEqual({//マージされて3は上書きされる
+  expect(Object.assign({}, a, b)).toStrictEqual({
+    //マージされて3は上書きされる
     one: 1,
     two: 2,
     three: 30,
     four: 4,
-    five: 5
+    five: 5,
   });
   expect({ ...a, ...b, six: 6 }).toStrictEqual({
     one: 1,
@@ -549,8 +550,7 @@ test("Object.assignメソッド/spread構文の練習", () => {
     three: 30,
     four: 4,
     five: 5,
-    six: 6
+    six: 6,
   });
 });
 //次回は「プロトタイプメソッドとインスタンスメソッドの優先順位」～
-
