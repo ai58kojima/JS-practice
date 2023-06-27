@@ -475,7 +475,7 @@ test("some/filterの練習", () => {
   expect(array.filter((number) => number % 2 !== 0)).toStrictEqual([1, 3, 5]); //
 });
 
-//⑿オブジェクトの練習
+//⑿オブジェクト
 test("オブジェクトの練習", () => {
   const obj = {};
   expect(Object.keys(obj)).toStrictEqual([]);
@@ -524,7 +524,7 @@ test("プロパティチェックの練習", () => {
   expect(Object.values(obj)).toStrictEqual([1]); //Object.value = 値を返す
   expect(Object.entries(obj)).toStrictEqual([["one", 1]]); //Object.value = [キー,値]を配列にして返す
 });
-
+//(13)プロトタイプオブジェクト
 test("Object.assignメソッド/spread構文の練習", () => {
   const a = {
     one: 1,
@@ -553,4 +553,23 @@ test("Object.assignメソッド/spread構文の練習", () => {
     six: 6,
   });
 });
-//次回は「プロトタイプメソッドとインスタンスメソッドの優先順位」～
+
+//(14)配列
+test("配列と分割代入の練習", () => {
+  const array = [1, 2, 3];
+  const [one, two, three] = array;
+  expect(array[0]).toStrictEqual(1);
+  expect(array[1]).toStrictEqual(2);
+  expect(array[2]).toStrictEqual(3);
+});
+test("ArrayのindexOfメソッド", () => {
+  const array = [1, 2, 3, "four"];
+  expect(array.indexOf(0)).toStrictEqual(-1);
+  expect(array.indexOf("one")).toStrictEqual(-1);
+  expect(array.indexOf(3)).toStrictEqual(2);
+
+  const obj = { Okinawa: "シーサー" };
+  const array1 = [1, 2, 3, obj];
+  expect(array1.indexOf({ Okinawa: "シーサー" })).toStrictEqual(-1);
+  expect(array1.indexOf(obj)).toStrictEqual(3);
+});
