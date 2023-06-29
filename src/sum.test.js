@@ -580,14 +580,14 @@ test("findIndex/findメソッドの練習", () => {
   const array = [1, 2, 3, obj];
   //[findIndex]プロパティ値が同じ要素を配列から見つけ、そのインデックス番号を取得
   expect(
-    array.findIndex((Object) => {
-      return Object.test === "中身";
+    array.findIndex((o) => {
+      return o.test === "中身";
     })
   ).toStrictEqual(3);
   //[find]要素そのものを返し、存在しない場合はundefinedを返す。
   expect(
-    array.find((O) => {
-      return O.test === "中身";
+    array.find((ob) => {
+      return ob.test === "中身";
     })
   ).toStrictEqual(obj);
   expect(
