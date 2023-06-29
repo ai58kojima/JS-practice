@@ -562,6 +562,7 @@ test("配列と分割代入の練習", () => {
   expect(array[1]).toStrictEqual(2);
   expect(array[2]).toStrictEqual(3);
 });
+//[indexOf]引数と厳密等価演算子（===）が一致すればその要素、ない場合は-1を返す。
 test("ArrayのindexOfメソッド", () => {
   const array = [1, 2, 3, "four"];
   expect(array.indexOf(0)).toStrictEqual(-1);
@@ -572,4 +573,58 @@ test("ArrayのindexOfメソッド", () => {
   const array1 = [1, 2, 3, obj];
   expect(array1.indexOf({ Okinawa: "シーサー" })).toStrictEqual(-1);
   expect(array1.indexOf(obj)).toStrictEqual(3);
+});
+
+test("findIndex/findメソッドの練習", () => {
+  const obj = { test: "中身" };
+  const array = [1, 2, 3, obj];
+  //[findIndex]プロパティ値が同じ要素を配列から見つけ、そのインデックス番号を取得
+  expect(
+    array.findIndex((o) => {
+      return o.test === "中身";
+    })
+  ).toStrictEqual(3);
+  //[find]要素そのものを返し、存在しない場合はundefinedを返す。
+  expect(
+    array.find((ob) => {
+      return ob.test === "中身";
+    })
+  ).toStrictEqual(obj);
+  expect(
+    array.find((O) => {
+      return false;
+    })
+  ).toStrictEqual(undefined);
+});
+
+test("slice/includes/someメソッド", () => {
+  const obj = { test: "中身" };
+  const array = [1, 2, 3, obj];
+  //①[slice]指定範囲の要素を取得し"true"を返す
+  expect(array.slice(0, 3)).toStrictEqual([1, 2, 3]);
+  expect(array.slice(-1)).toStrictEqual([obj]);
+  //②[includes]配列に指定要素が含まれているかを判定し"true"を返す
+  expect(array.includes(obj)).toStrictEqual(true);
+  //➂[some]テストするコールバック関数にマッチする要素があるならtrueを返す
+  expect(
+    array.some((obj) => {
+      return obj.test === "中身";
+    })
+  ).toStrictEqual(true);
+  //練習
+  const fruits = { apple: "りんご" };
+  const fruitsGrp = ["みかん", "もも", "ばなな", fruits];
+  expect(fruitsGrp.slice(0, 3)).toStrictEqual(["みかん", "もも", "ばなな"]);
+  expect(fruitsGrp.slice(-1)).toStrictEqual([fruits]);
+  expect(fruitsGrp.includes("もも")).toStrictEqual(true);
+  expect(
+    fruitsGrp.some((fruits) => {
+      return fruits.apple === "りんご";
+    })
+  ).toStrictEqual(true);
+  expect(
+    fruitsGrp.some((fruits) => {
+      return fruits.apple === "もも";
+    })
+  ).toStrictEqual(false);
 });
