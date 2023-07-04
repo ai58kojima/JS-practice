@@ -591,7 +591,7 @@ test("findIndex/findメソッドの練習", () => {
     })
   ).toStrictEqual(obj);
   expect(
-    array.find((O) => {
+    array.find((o) => {
       return false;
     })
   ).toStrictEqual(undefined);
@@ -628,3 +628,19 @@ test("slice/includes/someメソッド", () => {
     })
   ).toStrictEqual(false);
 });
+
+test("push/concat/flatメソッド", () => {
+  const array = [];
+  //[push]末尾に要素の追加
+  array.push([1, 2, 3]);
+  expect(array).toStrictEqual([[1, 2, 3]]);
+  //[concat]配列同士を結合 ※そのままの型で結合するので、階層深くなる時はx=[1, 2, 3]のようにまとまりで捉える。
+  const newArray = array.concat([4, 5, 6]);//例：concatは、非破壊的なメソッド　push/pop等は破壊的メソッド
+  expect(array).toStrictEqual([[1, 2, 3]]);
+  expect(newArray).toStrictEqual([[1, 2, 3], 4, 5, 6]);
+  //[flat]多次元配列の階層を、〇段階フラットにする
+  expect(newArray.flat()).toStrictEqual([1, 2, 3, 4, 5, 6]);
+});
+
+//配列を反復処理するメソッド～　[mapメソッド］写像,マッピング
+//forEachメソッドは、for(const a of array) {....}を使う方が読みやすい
