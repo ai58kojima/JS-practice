@@ -675,10 +675,10 @@ test("filterメソッドの練習", () => {
     { name: "ラピュタ" },
     { name: "千と千尋の神隠し" },
   ];
-  const array3 = ["千と千尋の神隠し", "ラピュタ"];
+  const array3 = ["千と千尋の神隠し" ,"ラピュタ"];
   expect(
     array2.filter((movieTitle) => array3.includes(movieTitle.name))
-  ).toStrictEqual([{ name: "千と千尋の神隠し" }, { name: "ラピュタ" }]);
+  ).toStrictEqual([{ name: "ラピュタ" },{ name: "千と千尋の神隠し" }]);
 });
 
 test("filterとmapの組み合わせ", () => {
@@ -689,13 +689,13 @@ test("filterとmapの組み合わせ", () => {
     { name: "ラピュタ" },
     { name: "千と千尋の神隠し" },
   ];
-  const array3 = ["千と千尋の神隠し", "ラピュタ"];
+  const array3 = ["ラピュタ","千と千尋の神隠し"];
   expect(
     array2
       .filter((movieTitle) => array3.includes(movieTitle.name))
       .map((favorite) => "好きなジブリ映画は、" + favorite.name)
   ).toStrictEqual([
-    "好きなジブリ映画は、千と千尋の神隠し",
     "好きなジブリ映画は、ラピュタ",
+    "好きなジブリ映画は、千と千尋の神隠し",
   ]);
 });
