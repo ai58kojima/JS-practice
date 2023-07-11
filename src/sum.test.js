@@ -642,5 +642,60 @@ test("push/concat/flatメソッド", () => {
   expect(newArray.flat()).toStrictEqual([1, 2, 3, 4, 5, 6]);
 });
 
-//配列を反復処理するメソッド～　[mapメソッド］写像,マッピング
-//forEachメソッドは、for(const a of array) {....}を使う方が読みやすい
+test("mapメソッドの練習", () => {
+  //[mapメソッド］写像,マッピング
+  //配列の要素を順番にコールバック関数へ渡し、返した値から新しい配列を返す(中身に処理を加える)
+  const array = [1, 2, 3];
+  expect(array.map((valueTimes) => valueTimes * 10)).toStrictEqual([
+    10, 20, 30,
+  ]);
+
+  //Q1)objectの取り出し方：プロパティ名を返す
+  const array2 = [{ name: "いちご" }, { name: "ばなな" }, { name: "りんご" }];
+  expect(array2.map((names) => names.name)).toStrictEqual([
+    "いちご",
+    "ばなな",
+    "りんご",
+  ]);
+
+  //Q2)数値が+ならtrue,-ならfalseを返す　→　等価演算子は真偽値で返す
+  const array3 = [-2, 5, -10, 0];
+  expect(array3.map((n) => n >= 0)).toStrictEqual([false, true, false, true]);
+});
+
+test("filterメソッドの練習", () => {
+  //[filter]trueを返した要素を集めて新しい配列を返す。(trueの値だけを、そのままの型で返す)
+  const array = [1, 2, 3, 4, 5];
+  expect(array.filter((num) => num % 2 === 0)).toStrictEqual([2, 4]);
+
+  //Q1)定数array2から定数array2とマッチする値を取出す
+  const array2 = [
+    { name: "ナウシカ" },
+    { name: "トトロ" },
+    { name: "ラピュタ" },
+    { name: "千と千尋の神隠し" },
+  ];
+  const array3 = ["千と千尋の神隠し", "ラピュタ"];
+  expect(
+    array2.filter((movieTitle) => array3.includes(movieTitle.name))
+  ).toStrictEqual([{ name: "ラピュタ" }, { name: "千と千尋の神隠し" }]);
+}); //配列array2の順番が維持される
+
+test("filterとmapの組み合わせ", () => {
+  //Q2)mapとfilterを使って、文字列に変換する
+  const array2 = [
+    { name: "ナウシカ" },
+    { name: "トトロ" },
+    { name: "ラピュタ" },
+    { name: "千と千尋の神隠し" },
+  ];
+  const array3 = ["ラピュタ", "千と千尋の神隠し"];
+  expect(
+    array2
+      .filter((movieTitle) => array3.includes(movieTitle.name))
+      .map((favorite) => "好きなジブリ映画は、" + favorite.name)
+  ).toStrictEqual([
+    "好きなジブリ映画は、ラピュタ",
+    "好きなジブリ映画は、千と千尋の神隠し",
+  ]);
+});
