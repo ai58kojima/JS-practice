@@ -679,7 +679,7 @@ test("filterメソッドの練習", () => {
   expect(
     array2.filter((movieTitle) => array3.includes(movieTitle.name))
   ).toStrictEqual([{ name: "ラピュタ" },{ name: "千と千尋の神隠し" }]);
-});
+});//配列array2の順番が維持される
 
 test("filterとmapの組み合わせ", () => {
   //Q2)mapとfilterを使って、文字列に変換する
