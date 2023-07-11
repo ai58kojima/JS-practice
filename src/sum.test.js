@@ -675,11 +675,11 @@ test("filterメソッドの練習", () => {
     { name: "ラピュタ" },
     { name: "千と千尋の神隠し" },
   ];
-  const array3 = ["千と千尋の神隠し" ,"ラピュタ"];
+  const array3 = ["千と千尋の神隠し", "ラピュタ"];
   expect(
     array2.filter((movieTitle) => array3.includes(movieTitle.name))
-  ).toStrictEqual([{ name: "ラピュタ" },{ name: "千と千尋の神隠し" }]);
-});//配列array2の順番が維持される
+  ).toStrictEqual([{ name: "ラピュタ" }, { name: "千と千尋の神隠し" }]);
+}); //配列array2の順番が維持される
 
 test("filterとmapの組み合わせ", () => {
   //Q2)mapとfilterを使って、文字列に変換する
@@ -689,7 +689,7 @@ test("filterとmapの組み合わせ", () => {
     { name: "ラピュタ" },
     { name: "千と千尋の神隠し" },
   ];
-  const array3 = ["ラピュタ","千と千尋の神隠し"];
+  const array3 = ["ラピュタ", "千と千尋の神隠し"];
   expect(
     array2
       .filter((movieTitle) => array3.includes(movieTitle.name))
