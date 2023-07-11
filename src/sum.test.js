@@ -586,8 +586,8 @@ test("findIndex/findメソッドの練習", () => {
   ).toStrictEqual(3);
   //[find]要素そのものを返し、存在しない場合はundefinedを返す。
   expect(
-    array.find((ob) => {
-      return ob.test === "中身";
+    array.find((o) => {
+      return o.test === "中身";
     })
   ).toStrictEqual(obj);
   expect(
