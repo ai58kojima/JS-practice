@@ -682,7 +682,7 @@ test("filterメソッドの練習", () => {
 }); //配列array2の順番が維持される
 
 test("filterとmapの組み合わせ", () => {
-  //Q2)mapとfilterを使って、文字列に変換する
+  //Q2)mapとfilterを使って、文字列に変換する　→　.でメソッドを繋いでいく方法「メソッドチェーン」
   const array2 = [
     { name: "ナウシカ" },
     { name: "トトロ" },
@@ -698,4 +698,12 @@ test("filterとmapの組み合わせ", () => {
     "好きなジブリ映画は、ラピュタ",
     "好きなジブリ映画は、千と千尋の神隠し",
   ]);
+});
+
+test("map.配列をオブジェクトにして返す", () => {
+  //obj =[{value:"A"},{value:"B"},{value:"C"}]の様な形で返したい
+  const array = ["A", "B", "C"];
+  expect(
+    array.map((v) => v.toLowerCase()).map((num) => ({ value: num }))
+  ).toStrictEqual([{ value: "a" }, { value: "b" }, { value: "c" }]);
 });
