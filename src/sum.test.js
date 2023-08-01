@@ -707,3 +707,19 @@ test("map.配列をオブジェクトにして返す", () => {
     array.map((v) => v.toLowerCase()).map((num) => ({ value: num }))
   ).toStrictEqual([{ value: "a" }, { value: "b" }, { value: "c" }]);
 });
+
+test("StringのindexOf/lastIndexOf/startsWith/endWith/includes練習", () => {
+  //indexOf: 先頭から検索し、その文字列が最初に現れたインデックスを返す
+  const str = "あいうえおかきくけこう";
+  expect(str.indexOf("う")).toStrictEqual(2);
+  //lastIndexOf: 末尾から検索し、その文字列の初めのインデックスを返す(!)⇒インデックス数の振り方は前から。
+  expect(str.lastIndexOf("う")).toStrictEqual(10);
+  expect(str.lastIndexOf("火")).toStrictEqual(-1);
+  //startsWith: その文字列が先頭にあるかの真偽値を返す
+  expect(str.startsWith("あい")).toStrictEqual(true);
+  //endsWith: その文字列が末尾にあるかの真偽値を返す
+  expect(str.endsWith("けこう")).toStrictEqual(true);
+  //includes: その文字列を含むかの真偽値を返す
+  expect(str.includes("おか")).toStrictEqual(true);
+  expect(str.includes("丘")).toStrictEqual(false);
+});
