@@ -723,3 +723,46 @@ test("StringのindexOf/lastIndexOf/startsWith/endWith/includes練習", () => {
   expect(str.includes("おか")).toStrictEqual(true);
   expect(str.includes("丘")).toStrictEqual(false);
 });
+
+test("文字列分割/結合の練習", () => {
+  const str = "は・に・ほ・へ・と";
+  expect(str.split("・").join("、")).toStrictEqual("は、に、ほ、へ、と");
+});
+
+test("正規表現の練習", () => {
+  //match, matchAll, キャプチャリングをテストコードに書く
+  const text = `
+  Hello, my name is John.
+  Email: john@example.com
+  Phone: 123-456-7890
+  `;
+
+  const pattern = /[abc]/g;
+  expect(text.match(pattern)).toStrictEqual(["a", "a", "a", "c"]); //[match]一致する最初の結果抽出・配列で返す
+
+  const pattern2 = /[A-Z]\w+/;
+  expect(text.match(pattern2)[0]).toStrictEqual("Hello");
+
+  const num = "080-0000-0000";
+  const pattern3 = /[^0-9]/g;
+  expect(num.replace(pattern3, "")).toStrictEqual("08000000000"); //[replace]置換
+
+  const pattern4 = /Email: (\S+)/;
+  expect(text.match(pattern4)[1]).toStrictEqual("john@example.com"); //[キャプチャリング] () で囲まれた部分を抽出
+});
+
+test("matchAllの練習", () => {
+  //[matchAll]全てのマッチする結果をIteratorで返す。for..ofを使って取り出す
+  const text = `
+  Hello, my name is John.
+  Email: john@example.com
+  Phone: 123-456-7890
+  `;
+  const pattern5 = /\w+/g;
+  const matchesIterator = text.matchAll(pattern5);
+  for (const match of matchesIterator) {
+    //match: "${match[0]}", index: ${match.index}, input: "${match.input}"　←イテレーターで返される要素
+    console.log(`"${match[0]}"`); // => "Hello""my""name""is""John""Email"...
+    expect(true).toStrictEqual(true);
+  }
+});
