@@ -760,9 +760,14 @@ test("matchAllの練習", () => {
   `;
   const pattern5 = /\w+/g;
   const matchesIterator = text.matchAll(pattern5);
+  const matches = [];
+
   for (const match of matchesIterator) {
+    matches.push(match); //matchesにmatchを代入
+    expect(matches.length).toStrictEqual(1); //配列の長さを取得
+    expect(matches[0][0]).toStrictEqual("Hello");
     //match: "${match[0]}", index: ${match.index}, input: "${match.input}"　←イテレーターで返される要素
-    console.log(`"${match[0]}"`); // => "Hello""my""name""is""John""Email"...
-    expect(true).toStrictEqual(true);
+    //console.log(`"${match[0]}"`); // => "Hello""my""name""is""John""Email"...
+    //expect(true).toStrictEqual(true);
   }
 });
