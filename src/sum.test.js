@@ -753,21 +753,43 @@ test("正規表現の練習", () => {
 
 test("matchAllの練習", () => {
   //[matchAll]全てのマッチする結果をIteratorで返す。for..ofを使って取り出す
-  const text = `
-  Hello, my name is John.
-  Email: john@example.com
-  Phone: 123-456-7890
-  `;
+  const text = `Hello, my name is John.`;
   const pattern5 = /\w+/g;
   const matchesIterator = text.matchAll(pattern5);
   const matches = [];
 
   for (const match of matchesIterator) {
-    matches.push(match); //matchesにmatchを代入
-    expect(matches.length).toStrictEqual(1); //配列の長さを取得
-    expect(matches[0][0]).toStrictEqual("Hello");
-    //match: "${match[0]}", index: ${match.index}, input: "${match.input}"　←イテレーターで返される要素
-    //console.log(`"${match[0]}"`); // => "Hello""my""name""is""John""Email"...
-    //expect(true).toStrictEqual(true);
+    matches.push(match); //1)マッチした要素の回収 ⇒ matchesにmatchを代入
+  }
+  expect(matches.length).toStrictEqual(5); //2)中身を確認する：配列の長さ取得 ⇒ 配列っぽいものが返ってくる
+  expect(matches[0][0]).toStrictEqual("Hello");
+  expect(matches[0].index).toStrictEqual(0);
+  expect(matches[0].input).toStrictEqual(text);
+  expect(matches[1][0]).toStrictEqual("my");
+  expect(matches[2][0]).toStrictEqual("name");
+  expect(matches[3][0]).toStrictEqual("is");
+  expect(matches[4][0]).toStrictEqual("John");
+  //match: "${match[0]}", index: ${match.index}, input: "${match.input}"　←イテレーターで返される要素
+});
+
+test("真偽値取得の練習", () => {
+  //電話番号の判定
+  const mobilephone = ["000-0000-0000", "999-9999-9999"]; //成功する文字列
+  const notMobilephone = [
+    "111-aaaa-0000",
+    "bbb-bbbb-bbbb",
+    "111-1111",
+    "a123-4567-8910",
+    "123-4567-89100",
+    "123-45671-8910",
+  ]; //失敗する文字列
+  const pattern = /^[0-9]{3}-[0-9]{4}-[0-9]{4}$/; //パターン ○○○-○○○○-○○○○ 「^」先頭指定、末尾指定「$」
+  for (const test of mobilephone) {
+    console.log(test, pattern.test(test));
+    expect(pattern.test(test)).toStrictEqual(true);
+  }
+  for (const test of notMobilephone) {
+    console.log(test, pattern.test(test));
+    expect(pattern.test(test)).toStrictEqual(false);
   }
 });
