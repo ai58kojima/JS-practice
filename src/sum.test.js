@@ -759,6 +759,7 @@ test("matchAllの練習", () => {
   const matches = [];
 
   for (const match of matchesIterator) {
+    //ステップに分割する
     matches.push(match); //1)マッチした要素の回収 ⇒ matchesにmatchを代入
   }
   expect(matches.length).toStrictEqual(5); //2)中身を確認する：配列の長さ取得 ⇒ 配列っぽいものが返ってくる
@@ -776,20 +777,35 @@ test("真偽値取得の練習", () => {
   //電話番号の判定
   const mobilephone = ["000-0000-0000", "999-9999-9999"]; //成功する文字列
   const notMobilephone = [
+    //失敗する文字列
     "111-aaaa-0000",
     "bbb-bbbb-bbbb",
     "111-1111",
     "a123-4567-8910",
     "123-4567-89100",
     "123-45671-8910",
-  ]; //失敗する文字列
+  ];
+
   const pattern = /^[0-9]{3}-[0-9]{4}-[0-9]{4}$/; //パターン ○○○-○○○○-○○○○ 「^」先頭指定、末尾指定「$」
   for (const test of mobilephone) {
-    console.log(test, pattern.test(test));
     expect(pattern.test(test)).toStrictEqual(true);
   }
   for (const test of notMobilephone) {
-    console.log(test, pattern.test(test));
+    //console.log(test, pattern.test(test));
     expect(pattern.test(test)).toStrictEqual(false);
   }
+});
+
+test("replace/replaceAllメソッド", () => {
+  const mobilephone = "080-1111-9999";
+  const pattern = /^[0-9]{3}-[0-9]{4}-[0-9]{4}$/;
+  const isNumPattern = /[0-9]/;
+  const isNumPatternGlobal = /[0-9]/g;
+  expect(mobilephone.replace("1", "a")).toStrictEqual("080-a111-9999"); //[replace]先頭のみ置換
+  expect(mobilephone.replaceAll("1", "a")).toStrictEqual("080-aaaa-9999"); //[replacAll]全てを置換
+  expect(mobilephone.replace(pattern, "a")).toStrictEqual("a");
+  expect(mobilephone.replace(isNumPattern, "a")).toStrictEqual("a80-1111-9999");
+  expect(mobilephone.replaceAll(isNumPatternGlobal, "a")).toStrictEqual(
+    "aaa-aaaa-aaaa"
+  );
 });
