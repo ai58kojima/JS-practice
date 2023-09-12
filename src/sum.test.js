@@ -809,3 +809,39 @@ test("replace/replaceAllメソッド", () => {
     "aaa-aaaa-aaaa"
   );
 });
+
+//オブジェクト指向とは：バレーボールという概念を定義
+test("クラスの練習", () => {
+  class Volleyball {
+    constructor(maker, color, size) {
+      this.maker = maker;
+      this.color = color;
+      this.size = size;
+      this.numOfHit = 0;
+    }
+    //クラスの関数を作る
+    hit() {
+      this.numOfHit++;
+    }
+  }
+  const mikasaVolleyball = new Volleyball("mikasa", "yellow&blue", 5);
+  const molltenVolleyball = new Volleyball("mollten", "red&white", 4);
+
+  expect(mikasaVolleyball.maker).toStrictEqual("mikasa");
+  expect(mikasaVolleyball.color).toStrictEqual("yellow&blue");
+  expect(mikasaVolleyball.size).toStrictEqual(5);
+
+  expect(molltenVolleyball.maker).toStrictEqual("mollten");
+  expect(molltenVolleyball.color).toStrictEqual("red&white");
+  expect(molltenVolleyball.size).toStrictEqual(4);
+
+  const mikasaVolleyball2 = new Volleyball("mikasa", "yellow&blue", 5);
+  expect(mikasaVolleyball2 === mikasaVolleyball).toStrictEqual(false); //住所が違うから同じでない
+
+  mikasaVolleyball.hit();
+  mikasaVolleyball.hit();
+  mikasaVolleyball.hit();
+  expect(mikasaVolleyball.numOfHit).toStrictEqual(3);
+  expect(molltenVolleyball.numOfHit).toStrictEqual(0);
+  expect(mikasaVolleyball2.numOfHit).toStrictEqual(0);
+});
