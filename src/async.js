@@ -18,3 +18,23 @@ asyncPromiseTask()
     console.log(num);
   })
   .catch(() => {});
+
+const response = fetch("https://google.com"); //promiseが返ってくる
+response.then((resp) => {
+  resp.ok;
+  console.log("ok:" + resp.ok);
+  //console.log("ok:" + resp.text()); //非同期処理
+  resp.text().then((text) => {
+    console.log(text);
+  });
+});
+
+//宿題は fetchを使って、いくつかのサイトにアクセスする
+//1並列実行されるパターン
+//2直列実行するパターン
+//3失敗する(アクセスできないサイトをURLに指定する)
+const yahooUrl = fetch("https://www.yahoo.co.jp/");
+yahooUrl.then((resp) => {
+  resp.clone();
+  console.log("ok:" + resp.clone());
+});
