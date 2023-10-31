@@ -28,35 +28,3 @@ response.then((resp) => {
     console.log(text);
   });
 });
-
-//[宿題] fetchを使って、サイトにアクセスする
-//1)並列実行されるパターン
-const urls = [
-  "https://www.site1.com", //urls配列内の各URLにアクセスするPromiseを生成
-  "https://www.site2.com",
-  "https://www.site3.com",
-];
-function fetchUrl(url) {
-  // 各URLにアクセスするPromiseを生成する関数
-  return fetch(url)
-    .then((response) => response.text())
-    .then((data) => {
-      console.log(`Fetched ${url}`);
-      return data;
-    })
-    .catch((error) => {
-      console.error(`Failed to fetch ${url}: ${error}`);
-      return null;
-    });
-}
-const promises = urls.map((url) => fetchUrl(url)); // 各URLの取得を並列実行
-Promise.all(promises) //Promise.all()で並列実行
-  .then((results) => {
-    console.log("All requests completed:", results); // 成功：resultsには各URLの取得結果が順番に格納されています
-  })
-  .catch((error) => {
-    console.error("An error occurred:", error);
-  });
-
-//2直列実行するパターン
-//3失敗する(アクセスできないサイトをURLに指定する)
