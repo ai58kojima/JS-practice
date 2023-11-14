@@ -35,8 +35,7 @@ Promise.all(promises) //Promise.all()で並列実行.then(成功)と.catch(失�
 //2) 直列実行するパターン 　　★前の処理が完了した後に処理実行させるー[ABC→DEF]
 let current = Promise.resolve(); //Promise.resolve()で初期化
 for (let i = 0; i < urls.length; i++) {
-  const url = urls[i];
-  //または、const url of urls
-  console.log("ログ：", url);
+  const url = urls[i]; //または、for(const url of urls){ }
+  console.log("  ログ：", url);
   current = current.then(() => fetchUrl(url)); //currentはプロミスにチェーンされ、前の処理完了するまで次の処理待機
 }
