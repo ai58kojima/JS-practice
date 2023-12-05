@@ -15,4 +15,4 @@ jobs:
       - name: prettier
         run: npx prettier --check .
       - name: Jest
-        run: npx jest
+        run: npm run test
