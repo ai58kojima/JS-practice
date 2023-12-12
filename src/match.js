@@ -1,4 +1,4 @@
-const pattern = /[0-9０-９]+/;
+const pattern = /^[0-9０-９]+$/;
 const string1 = "abc";
 const string2 = "123";
 //pattern.test("abc");
