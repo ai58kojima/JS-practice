@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "build": "webpack build --mode development"
   },
   "author": "",
   "license": "ISC",
