@@ -26,7 +26,7 @@ kintone.events.on("app.record.index.show", async (event) => {
     "GET",
     body
   );
-  //debugger;
+  debugger;
   console.log(result);
 });
 
