@@ -49,8 +49,7 @@ kintone.events.on("app.record.index.show", async (event) => {
 const editEvent = ["app.record.create.show", "app.record.edit.show"];
 kintone.events.on(editEvent, (event) => {
   console.log("編集画面");
-  //  what:全レコードのタイトルの最大値を取得し、その数字の最大値を取得
-  //       最大値＋１を計算してタイトルに入力する
+  //  what:全レコードのタイトルの最大値を取得し、その値＋１を計算してタイトルに入力する
 
   // メニュー上側の要素取得・ボタン表示
   const element = kintone.app.record.getHeaderMenuSpaceElement();
