@@ -45,7 +45,7 @@ kintone.events.on("app.record.index.show", async (event) => {
   });
 });
 
-//4)when:新規レコード追加画面でボタンがクリックしたとき
+//4)when:新規レコード追加画面でボタンをクリックしたとき
 const editEvent = ["app.record.create.show", "app.record.edit.show"];
 kintone.events.on(editEvent, (event) => {
   console.log("編集画面");
@@ -56,12 +56,13 @@ kintone.events.on(editEvent, (event) => {
   const element = kintone.app.record.getHeaderMenuSpaceElement();
   const button = document.createElement("button");
   button.textContent = "最大値＋１を計算";
-  // ボタン押下処理に
+  // when:ボタンをクリックしたとき
   button.onclick = async () => {
     console.log("clicked");
     // 全レコードのタイトル取得
     const stringIDs = await getIDs();
     console.log(stringIDs);
+
     //レコードに値をセットする
     const maxID = getMaxID(stringIDs);
     const { record } = kintone.app.record.get();
@@ -71,15 +72,16 @@ kintone.events.on(editEvent, (event) => {
   element.appendChild(button);
 });
 
-//数字をチェックする関数
+// 数字をチェックする関数
 function inNumber(numberString) {}
 // isNumber()を使ってnumberIDsを作成する
 function getMaxID(IDs) {
   const numberIDs = IDs.map((ID) => Number.parseInt(ID)).filter(
-    (n) => !Number.isNaN(n)
+    //parseIntメソッド:整数へ変換処理
+    (n) => !Number.isNaN(n) //Number.isNaNメソッド:値がNaN(Not-a-Number)であるか真偽値で判定
   );
   console.log(numberIDs);
-  return Math.max(...numberIDs) + 1; //Math.max(a)は配列⇒spread構文にする...x　最大値を取得
+  return Math.max(...numberIDs) + 1; //What:最大値を取得  ※Math.max(a)は可変長引数型であり配列ではない⇒spread構文(...x)で展開する
 }
 
 //（レコードの一括取得）カーソルを作成する

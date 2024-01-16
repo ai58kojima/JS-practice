@@ -4,7 +4,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default {
-  entry: "./kintone-plagin/index.js",
+  entry: "./kintone-plugin/index.js",
   output: {
     filename: "main.js",
     path: path.resolve(__dirname, "dist"),
