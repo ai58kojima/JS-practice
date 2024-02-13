@@ -6,10 +6,26 @@
   <form class="js-submit-settings">
     <p class="kintoneplugin-row">
       <label for="message">
-        Message:
+        メッセージ:
         <input type="text" class="js-text-message kintoneplugin-input-text" />
       </label>
     </p>
+
+    <div class="kintoneplugin-select-outer">
+      <div class="select-message">選択項目:</div>
+      <div class="kintoneplugin-select">
+        <select name="pets" id="pet-select">
+          <option value="">--選択してください--</option>
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="hamster">Hamster</option>
+          <option value="parrot">Parrot</option>
+          <option value="spider">Spider</option>
+          <option value="goldfish">Goldfish</option>
+        </select>
+      </div>
+    </div>
+
     <p class="kintoneplugin-row">
       <button
         type="button"
