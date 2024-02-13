@@ -331,7 +331,8 @@
 </div>
 */
 .kintoneplugin-select-outer {
-  display: inline-block;
+  display: flex;
+  align-items: center;
 }
 
 .kintoneplugin-select {
@@ -339,6 +340,7 @@
   display: inline-block;
   overflow: hidden;
   box-sizing: border-box;
+  margin-left: 8px;
   margin-right: 8px;
   padding: 0 32px 0 8px;
   min-width: 80px;
