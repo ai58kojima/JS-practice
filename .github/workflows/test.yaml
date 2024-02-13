@@ -13,6 +13,6 @@ jobs:
       - name: Install packages
         run: npm ci
       - name: prettier
-        run: npx prettier --check .
+        run: npx prettier --check kintone-plugin src
       - name: Jest
-        run: npx jest
+        run: npm run test

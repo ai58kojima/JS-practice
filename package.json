@@ -5,12 +5,17 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "build": "webpack build --mode development"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@kintone/create-plugin": "^7.0.9",
+    "@kintone/plugin-packer": "^8.0.4",
     "jest": "^29.5.0",
-    "prettier": "2.8.8"
+    "prettier": "^2.8.8",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
   }
 }
