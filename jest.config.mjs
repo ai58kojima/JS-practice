@@ -1,5 +1,3 @@
 export default {
-  modulePathIgnorePatterns: [
-    "business-example"	   
-  ]
+  modulePathIgnorePatterns: ["business-example"],
 };
