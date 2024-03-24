@@ -1,0 +1,13 @@
+.Notepad {
+  height: 90%;
+  margin-left: 1rem;
+  margin-top: 2rem;
+}
+.textarea {
+  width: 90%;
+  height: 90%;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+}

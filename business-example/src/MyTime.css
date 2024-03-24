@@ -4,3 +4,11 @@
   font-size: 60px;
   font-family: "Cherry Bomb One", system-ui;
 }
+@import url("https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap");
+.area {
+  font-size: 18px;
+  text-align: center;
+  font-family: "Kiwi Maru", serif;
+  font-weight: 400;
+  font-style: normal;
+}
