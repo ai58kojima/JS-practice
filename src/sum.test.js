@@ -227,28 +227,6 @@ test("可変長引数", () => {
   fn("a", "b", "c"); //関数実行
 });
 
-//▼木曜勉強会スタート2024/03/07 「関数～」
-test("関数の練習（可変長引数）2", () => {
-  //可変長引数とは、複数の引数を受け取れること
-  expect(Math.max(10, 2, 3)).toBe(10); //Math.max(...args)
-  expect(Math.min(10, 2, 3)).toBe(2);
-  expect(Math.min(50)).toBe(50);
-});
-test("関数の練習（分割代入）2", () => {
-  function helloMessage({ firstname, familyname }) {
-    // return "Hello" + familyname + firstname + "さん";
-    return `Hello ${familyname} ${firstname} さん`;
-  }
-  const fullname = { familyname: "山田", firstname: "としお" };
-  expect(helloMessage(fullname)).toBe("Hello 山田 としお さん");
-});
-test("関数の練習（分割代入.配列ver）2", () => {
-  function multiply([x, y]) {
-    return x * y;
-  }
-  expect(multiply([2, 3])).toBe(6);
-}); //▼
-
 test("Arrow Functionの書き方", () => {
   //関数を値として使う方法 //aを2乗する関数
   const a = function (x) {
