@@ -78,3 +78,52 @@ test("コールバック関数、メソッド定義", () => {
   expect(obj.method1(1)).toBe(100);
   expect(obj.method2(1, 2)).toBe(300);
 }); //▲
+
+//▼2024/03/28 「条件分岐if文」
+test("条件分岐if文", () => {
+  //1)じゃんけん関数を作る
+  const jyanken = function (hand) {
+    if (hand === "グー") {
+      return "あいこ";
+    } else if (hand === "チョキ") {
+      return "勝ち";
+    } else if (hand === "パー") {
+      return "負け";
+    } else {
+      return "分かりません";
+    }
+  };
+  expect(jyanken("グー")).toBe("あいこ");
+  expect(jyanken("チョキ")).toBe("勝ち");
+  expect(jyanken("パー")).toBe("負け");
+  expect(jyanken("手")).toBe("分かりません");
+
+  //2)うるう年かどうか判定する関数
+  const isUruYear = function (year) {
+    //*複雑式の場合、まずtrue/falseで書いておく
+    if (year % 400 === 0) {
+      return `${year}年はうるう年です`; //true
+    } else if (year % 100 === 0) {
+      return `${year}年はうるう年ではありません`; //false
+    } else if (year % 4 === 0) {
+      return `${year}年はうるう年です`; //true
+    } else {
+      return `${year}年はうるう年ではありません`; //false
+    }
+  };
+  expect(isUruYear(2024)).toBe("2024年はうるう年です");
+  expect(isUruYear(2200)).toBe("2200年はうるう年ではありません");
+
+  //3)1のじゃんけん関数をswich文で書く
+  const jyanken2 = function (hand) {
+    switch (hand) {
+      case "グー":
+        return "あいこ";
+      case "チョキ":
+        return "勝ち";
+      case "パー":
+        return "負け";
+    }
+  };
+  expect(jyanken2("グー")).toBe("あいこ");
+}); //▲
