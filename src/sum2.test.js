@@ -127,3 +127,49 @@ test("条件分岐if文", () => {
   };
   expect(jyanken2("グー")).toBe("あいこ");
 }); //▲
+
+//▼2024/04/04 「ループと反復処理(while・for)」
+test("ループと反復処理", () => {
+  //1)無限ループ →ctrl+Cで停止
+  // let x = 1;
+  // while (true) {
+  //   x += 1;
+  //   console.log(x);
+  // }
+
+  //2)べき乗(引数に一番近い２のn乗を返したいので、base*2がnumを超えるまで継続する関数)
+  const log2 = (num) => {
+    let base = 1;
+    let pow = 0;
+    while (num > base * 2) {
+      pow += 1;
+      base *= 2;
+    }
+    return pow;
+  };
+  expect(log2(1)).toBe(0);
+  expect(log2(17)).toBe(4);
+  expect(log2(1023)).toBe(9);
+
+  //3)for文：1から10までの値を合計する
+  const sum = (num) => {
+    let total = 0;
+    for (let i = 0; i < num; i++) {
+      total += i + 1;
+    }
+    return total;
+  };
+  expect(sum(5)).toBe(15); // 1 + 2 + 3 + 4 + 5 =15
+  expect(sum(10)).toBe(55);
+
+  //3)for文(配列ver)
+  const sum2 = (nums) => {
+    let total = 0;
+    for (let i = 0; i < nums.length; i++) {
+      total += nums[i];
+    }
+    return total;
+  };
+  expect(sum2([0, 1, 2, 3])).toBe(6);
+  expect(sum2([1, 0, -1])).toBe(0);
+}); //▲
