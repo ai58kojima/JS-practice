@@ -162,7 +162,7 @@ test("ループと反復処理", () => {
   expect(sum(5)).toBe(15); // 1 + 2 + 3 + 4 + 5 =15
   expect(sum(10)).toBe(55);
 
-  //3)for文(配列ver)
+  //)for文(配列ver)
   const sum2 = (nums) => {
     let total = 0;
     for (let i = 0; i < nums.length; i++) {
@@ -173,3 +173,94 @@ test("ループと反復処理", () => {
   expect(sum2([0, 1, 2, 3])).toBe(6);
   expect(sum2([1, 0, -1])).toBe(0);
 }); //▲
+
+//▼2024/04/11 「配列のforEachメソッド～for...in文」反復処理
+test("配列の各メソッド（自作版）", () => {
+  // 1)forEachを自作：引数2個の内、1個目が配列、2個目が関数を受け取る
+  const forEachMaker = (arr, fn) => {
+    for (let i = 0; i < arr.length; i++) {
+      fn(arr[i]);
+    }
+  };
+  // forEachMaker関数を直接呼び出す
+  forEachMaker([1, 2, 3, 4, 5], (x) => {
+    console.log(x);
+  });
+  // 配列のメソッドforEachを使う
+  [1, 2, 3, 4, 5].forEach((x) => {
+    console.log(x);
+  });
+
+  // 2) someのbreak版を自作：配列の条件を満たす要素があるか判定し、trueになった時点で終了しtrueを返す関数
+  const someMaker1 = (arr, fn) => {
+    let ok = false; // 変数okを初期化
+    for (let i = 0; i < arr.length; i++) {
+      // 配列の各要素に対してループ
+      const result = fn(arr[i]); // 関数fnを適用し、結果を取得
+      if (result) {
+        ok = true; // 条件を満たした場合、okをtrueに設定してループを抜ける
+        break;
+      }
+    }
+    return ok; // okを返す
+  };
+
+  expect(
+    //条件式に基づいて要素を判定する方法を比較
+    someMaker1([1, 3, 5, 8], (num) => {
+      return num % 2 === 0;
+    })
+  ).toBe(
+    [1, 2, 3, 4, 5].some((num) => {
+      return num % 2 === 0;
+    })
+  );
+
+  // 3) someのreturn版を自作
+  const someMaker2 = (arr, fn) => {
+    for (let i = 0; i < arr.length; i++) {
+      const result = fn(arr[i]);
+      if (result) {
+        return true;
+      }
+    }
+    return false;
+  };
+  const isEven = (num) => {
+    // 偶数かどうか判定関数
+    return num % 2 === 0;
+  };
+  expect(someMaker2([1, 3, 5, 8], isEven)).toBe([1, 2, 3, 4, 5].some(isEven));
+
+  // 4) filterを自作：値を絞込み、新しい配列を作る
+  const filterMaker = (arr, fn) => {
+    const array = [];
+    for (let i = 0; i < arr.length; i++) {
+      const result = fn(arr[i]);
+      if (!result) {
+        //continue:失敗したら下記の処理をスキップしてfor文に戻る
+        continue;
+      }
+      array.push(arr[i]); //成功したら要素を追加する
+    }
+    return array;
+  };
+  const isOdd = (num) => {
+    // 奇数かどうか判定関数
+    return num % 2 !== 0;
+  };
+  expect(filterMaker([1, 3, 5, 8, 10], isOdd)).toStrictEqual([1, 3, 5]);
+  expect([1, 3, 5, 8, 10].filter(isOdd)).toStrictEqual([1, 3, 5]); //filterメソッド
+});
+
+// ※for...inは使わないこと。for...ofを使いましょう
+// オブジェクトの各プロパティを取得する方法・種類
+const obj = {
+  a: 1,
+  b: 2,
+  c: 3,
+};
+console.log("Keys", Object.keys(obj)); //キー => [ 'a', 'b', 'c' ]
+console.log("Values", Object.values(obj)); //値 => [ 1, 2, 3 ]
+console.log("Entries", Object.entries(obj)); //配列[キー:値] => [ 'a', 1 ], [ 'b', 2 ], [ 'c', 3 ]
+//▲
