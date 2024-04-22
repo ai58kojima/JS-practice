@@ -264,3 +264,59 @@ console.log("Keys", Object.keys(obj)); //キー => [ 'a', 'b', 'c' ]
 console.log("Values", Object.values(obj)); //値 => [ 1, 2, 3 ]
 console.log("Entries", Object.entries(obj)); //配列[キー:値] => [ 'a', 1 ], [ 'b', 2 ], [ 'c', 3 ]
 //▲
+
+//▼2024/04/18 「for...of：配列から値を取り出して反復処理できる」「オブジェクト」
+test("for(const..of..)文", () => {
+  //1)配列の中身を全て合計する関数
+  const array = [1, 2, 3, 4, 5];
+  let sum = 0;
+  for (const number of array) {
+    sum += number;
+  }
+  expect(sum).toBe(15);
+
+  //2)オブジェクトの中身を合計する関数
+  const obj = {
+    a: 1,
+    b: 2,
+    c: 3,
+  };
+  let sum2 = 0;
+  let keys = "";
+  for (const [key, value] of Object.entries(obj)) {
+    //console.log(key, value);
+    sum2 += value;
+    keys += key;
+  }
+  expect(sum2).toBe(6);
+  expect(keys).toBe("abc");
+
+  keys2 = "";
+  value2 = 0;
+  for (const key of Object.keys(obj)) {
+    console.log(key);
+    keys2 += key;
+  }
+  for (const value of Object.values(obj)) {
+    console.log(value);
+    value2 += value;
+  }
+  expect(keys2).toBe("abc");
+  expect(value2).toBe(6);
+});
+
+test("オブジェクト", () => {
+  //オブジェクトはプロパティ(名前key:値value = 1対1)の集合で任意のデータを指定できる。配列や関数もオブジェクトの一種
+
+  //1)オブジェクトの宣言
+  const obj = {};
+  expect(Object.entries(obj).length).toBe(0);
+
+  const obj2 = {
+    number: 100,
+  };
+  const obj2_entries = Object.entries(obj2);
+  expect(obj2_entries.length).toBe(1);
+  expect(obj2.number).toBe(100);
+  expect(obj2_entries[0][0]).toBe("number");
+});
