@@ -3,6 +3,7 @@
 //▼2024/03/07 「関数の分割代入」
 test("関数の分割代入", () => {
   //1)可変長引数　 *可変長引数とは、複数の引数を受け取れること
+  //               *分割代入とは、配列から値を取り出して(or オブジェクトからプロパティを取り出して)、別の変数に代入する式のこと
   expect(Math.max(10, 2, 3)).toBe(10); //Math.max(...args)
   expect(Math.min(10, 2, 3)).toBe(2);
   expect(Math.min(50)).toBe(50);
@@ -306,7 +307,7 @@ test("for(const..of..)文", () => {
 });
 
 //▼2024/04/25 「オブジェクト省略記法・プロパティへのアクセス」
-//1)オブジェクトの宣言
+//1)オブジェクトを宣言して中身を確認
 test("オブジェクトの宣言", () => {
   const obj = {};
   expect(Object.entries(obj).length).toBe(0);
@@ -342,6 +343,7 @@ test("オブジェクトの省略記法", () => {
   expect(colors2.red).toBe("赤");
   expect(colors2.blue).toBe("青");
 
+  //3)特殊なキー名を利用した時のオブジェクト宣言と中身の確認
   const obj = {
     key: 1,
     123: 2,
@@ -352,7 +354,7 @@ test("オブジェクトの省略記法", () => {
   expect(obj["my-prop"]).toBe(3);
 });
 
-//3)[ES2015] オブジェクトと分割代入
+//4)オブジェクトの分割代入
 test("オブジェクト分割代入", () => {
   const colors = {
     yellow: "黄色",
@@ -363,5 +365,29 @@ test("オブジェクト分割代入", () => {
   expect(yellow).toBe(colors.yellow);
   expect(red).toBe(colors.red);
   expect(blue).toBe(colors.blue);
+
+  //5)練習ネストされたオブジェクト:分割代入を使ってstudentオブジェクトからname, age, universityのnameを取り出してください
+  const student = {
+    name: "Alice",
+    age: 25,
+    university: {
+      name: "Okinawa",
+      location: "Awaji",
+    },
+  };
+  const {
+    name,
+    age,
+    university: { name: universityNameConst },
+  } = student;
+  expect(name).toBe(student.name);
+  expect(age).toBe(student.age);
+  expect(universityNameConst).toBe(student.university.name);
+
+  //6)配列分割代入:分割代入を使ってnumbers配列から最初の要素と残りの要素を取り出してください
+  const numbers = [1, 2, 3, 4, 5];
+  const [firstNum, ...restNum] = numbers;
+  expect(firstNum).toBe(numbers[0]);
+  expect(restNum).toEqual([2, 3, 4, 5]);
 });
 //▲
