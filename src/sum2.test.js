@@ -305,10 +305,9 @@ test("for(const..of..)文", () => {
   expect(value2).toBe(6);
 });
 
-test("オブジェクト", () => {
-  //オブジェクトはプロパティ(名前key:値value = 1対1)の集合で任意のデータを指定できる。配列や関数もオブジェクトの一種
-
-  //1)オブジェクトの宣言
+//▼2024/04/25 「オブジェクト省略記法・プロパティへのアクセス」
+//1)オブジェクトの宣言
+test("オブジェクトの宣言", () => {
   const obj = {};
   expect(Object.entries(obj).length).toBe(0);
 
@@ -320,3 +319,49 @@ test("オブジェクト", () => {
   expect(obj2.number).toBe(100);
   expect(obj2_entries[0][0]).toBe("number");
 });
+
+//2)オブジェクトの省略記法
+test("オブジェクトの省略記法", () => {
+  const colors = {
+    yellow: "黄色",
+    red: "赤",
+    blue: "青",
+  };
+  expect(colors.yellow).toBe("黄色");
+  expect(colors.red).toBe("赤");
+  expect(colors.blue).toBe("青");
+
+  const yellow = "黄色";
+  const red = "赤";
+  const colors2 = {
+    yellow,
+    red,
+    blue: "青",
+  };
+  expect(colors2.yellow).toBe("黄色");
+  expect(colors2.red).toBe("赤");
+  expect(colors2.blue).toBe("青");
+
+  const obj = {
+    key: 1,
+    123: 2,
+    "my-prop": 3,
+  };
+  expect(obj.key).toBe(1);
+  expect(obj[123]).toBe(2);
+  expect(obj["my-prop"]).toBe(3);
+});
+
+//3)[ES2015] オブジェクトと分割代入
+test("オブジェクト分割代入", () => {
+  const colors = {
+    yellow: "黄色",
+    red: "赤",
+    blue: "青",
+  };
+  const { yellow, red, blue } = colors; //オブジェクト分割代入 = オブジェクトリテラルのような構文
+  expect(yellow).toBe(colors.yellow);
+  expect(red).toBe(colors.red);
+  expect(blue).toBe(colors.blue);
+});
+//▲
