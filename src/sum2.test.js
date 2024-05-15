@@ -320,7 +320,6 @@ test("オブジェクトの宣言", () => {
   expect(obj2.number).toBe(100);
   expect(obj2_entries[0][0]).toBe("number");
 });
-
 //2)オブジェクトの省略記法
 test("オブジェクトの省略記法", () => {
   const colors = {
@@ -353,7 +352,6 @@ test("オブジェクトの省略記法", () => {
   expect(obj[123]).toBe(2);
   expect(obj["my-prop"]).toBe(3);
 });
-
 //4)オブジェクトの分割代入
 test("オブジェクト分割代入", () => {
   const colors = {
@@ -389,5 +387,68 @@ test("オブジェクト分割代入", () => {
   const [firstNum, ...restNum] = numbers;
   expect(firstNum).toBe(numbers[0]);
   expect(restNum).toEqual([2, 3, 4, 5]);
+});
+//▲
+
+//▼2024/05/9 「プロパティの追加~」
+test("プロパティ・オブジェクトの練習", () => {
+  //1) プロパティの追加：keyプロパティを追加して値を代入。プロパティが自動作成される。ブラケット記法object[式]
+  const obj = {};
+  obj.key = "value";
+  obj["key2"] = "value2";
+  console.log(obj.key);
+  console.log(obj["key"]); // => "value"
+  console.log(obj["key2"]); // => "value2"
+  console.log(obj["key9"]); // => "undefined"
+  //  undefined：存在しないプロパティ
+  //  null：プロパティは存在しているけど値がない
+
+  //2) オブジェクトの列挙 Object.keys,entries,valuesを書く
+  const fruitObj = {
+    apple: 1,
+    banana: 2,
+    orange: 3,
+  };
+  expect(Object.keys(fruitObj)).toStrictEqual(["apple", "banana", "orange"]);
+  expect(Object.values(fruitObj)).toStrictEqual([1, 2, 3]);
+  expect(Object.entries(fruitObj)).toStrictEqual([
+    // データ型は配列。配列の入れ子[[n,x][n,x]]を2次元配列と呼ぶ
+    // 基本的にオブジェクトのキーは文字列として扱われる
+    ["apple", 1],
+    ["banana", 2],
+    ["orange", 3],
+  ]);
+
+  //3) Object.assignメソッド：あるオブジェクトを別のオブジェクトに代入(assign)し、オブジェクトの複製やマージができる。
+  const objA = { apple: "りんご" };
+  const objB = { banana: "バナナ" };
+  const objC = { orange: "オレンジ" };
+  expect(Object.assign({}, objA, objB, objC)).toStrictEqual({
+    //空のオブジェクトにobjA~Cを代入してマージ完了
+    apple: "りんご",
+    banana: "バナナ",
+    orange: "オレンジ",
+  });
+
+  //4) Objectのスプレッド構文「...」：オブジェクトリテラル{}の中に指定したオブジェクトのプロパティを展開できる
+  const obj1 = { apple: "りんご" };
+  const obj2 = { banana: "バナナ" };
+  const obj3 = { orange: "オレンジ" };
+  const objMarged = {
+    ...obj1,
+    ...obj2,
+    ...obj3,
+  };
+  expect(objMarged).toStrictEqual({
+    apple: "りんご",
+    banana: "バナナ",
+    orange: "オレンジ",
+  });
+});
+//▲
+
+//▼2024/05/15 「オブジェクトの複製~」
+test("オブジェクトの複製", () => {
+  //1)
 });
 //▲
