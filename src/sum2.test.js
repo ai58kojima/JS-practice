@@ -320,7 +320,6 @@ test("オブジェクトの宣言", () => {
   expect(obj2.number).toBe(100);
   expect(obj2_entries[0][0]).toBe("number");
 });
-
 //2)オブジェクトの省略記法
 test("オブジェクトの省略記法", () => {
   const colors = {
@@ -353,7 +352,6 @@ test("オブジェクトの省略記法", () => {
   expect(obj[123]).toBe(2);
   expect(obj["my-prop"]).toBe(3);
 });
-
 //4)オブジェクトの分割代入
 test("オブジェクト分割代入", () => {
   const colors = {
