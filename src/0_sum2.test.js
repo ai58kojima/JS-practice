@@ -446,26 +446,3 @@ test("プロパティ・オブジェクトの練習", () => {
   });
 });
 //▲
-
-//▼2024/05/15 「配列~」
-test("配列~", () => {
-  //1)配列の作成とアクセス方法：2二元配列[0][0]、length-1、.at(0)末尾から要素取出しなどできる
-  const array1 = [
-    [1, "one"],
-    [2, "two"],
-  ];
-  expect(array1[0]).toStrictEqual([1, "one"]);
-  expect(array1[1]).toStrictEqual([2, "two"]);
-  expect(array1[0][0]).toStrictEqual(1);
-  expect(array1[1][0]).toStrictEqual(2);
-  expect(array1[0][1]).toStrictEqual("one");
-  expect(array1[1][1]).toStrictEqual("two");
-
-  //2 配列と分割代入：変数を一度に作成できる
-  const array2 = [1, 2, 3];
-  const [one, two, three] = array2;
-  expect(one).toStrictEqual(1);
-  expect(two).toStrictEqual(2);
-  expect(three).toStrictEqual(3);
-});
-//▲
