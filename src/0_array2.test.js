@@ -114,6 +114,58 @@ test("配列の展開,配列をフラット化", () => {
 });
 //▲
 
-//▼2024/05/ 「配列の反復処理から(map, filterから)~」
-test("", () => {});
+//▼2024/05/30 「配列の反復処理から(map, filter)～文字列」
+test("反復処理(map, filter)・メソッドチェーン", () => {
+  //配列mapメソッド:配列要素を順番にコールバック関数へ渡し、同じ処理を反復的に実行できる
+  //1)mapを使って名前の後ろに「くん」「さん」を追加する処理
+  const names = ["太郎", "次郎", "三郎"];
+  const newNames = names.map((name) => {
+    return name + "さん";
+  });
+  expect(newNames).toStrictEqual(["太郎さん", "次郎さん", "三郎さん"]);
+
+  //配列filterメソッド：コールバック関数がtrueを返した要素だけを集めた新しい配列を返す
+  //2)filterを使って「女性」の要素だけを取り出し配列を作る処理
+  const obj = [
+    { name: "鈴木", gender: "男性" },
+    { name: "田中", gender: "女性" },
+    { name: "森山", gender: "男性" },
+  ];
+  const Female = obj.filter((person) => {
+    return person.gender === "女性";
+  });
+  expect(Female).toStrictEqual([{ name: "田中", gender: "女性" }]);
+
+  //メソッドチェーン:[配列].concat().concat() .で繋げて書くと、返り値を配列内に入れて返す
+  //3)mapとfilterを使ったメソッドチェーンの練習：女性の場合は「＋さん」男性の場合は「＋くん」を返す処理
+  const objPerson = [
+    { name: "鈴木", gender: "男性" },
+    { name: "田中", gender: "女性" },
+    { name: "森山", gender: "男性" },
+  ];
+  const Male = objPerson
+    .filter((person) => {
+      // .filterで男性データの絞込み
+      return person.gender === "男性";
+    })
+    .map((person) => {
+      // .mapで要素から`name`プロパティに処理を加える
+      return person.name + "くん";
+    });
+  expect(Male).toStrictEqual(["鈴木くん", "森山くん"]);
+
+  const Female2 = objPerson
+    .filter((person) => {
+      return person.gender === "女性";
+    })
+    .map((person) => {
+      return person.name + "さん";
+    });
+  expect(Female2).toStrictEqual(["田中さん"]);
+});
+
+test("文字列", () => {
+  //文字列リテラルルール："" '' ``
+  //エスケープシーケンス：決まった特殊文字のこと（`\n` = 改行）
+});
 //▲
