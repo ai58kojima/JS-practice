@@ -50,7 +50,7 @@ test("正規表現オブジェクト", () => {
   expect(result2.length).toBe(1);
   expect(result2[0]).toBe("000-0000-1111");
 
-  //3)gフラグ（globalの略称）：正規表現のマッチを文字列の最後まで繰り返す
+  //3)gフラグ（globalの略称）：正規表現のマッチした全ての文字列を含んだ配列を返す
   const pattern3 = /\d{3}-\d{4}-\d{4}/g;
   const result3 = str.match(pattern3);
   expect(result3.length).toBe(2); //マッチする文字列が全部で2つあるため
@@ -64,7 +64,77 @@ test("正規表現オブジェクト", () => {
   const pattern4 = /[a-zA-Z]+/g;
   const results4 = str4.matchAll(pattern4);
   for (const result of results4) {
+    //// matchAllはIteratorを返す(要素全体の情報の列挙)
     console.log(`match: "${result[0]}", index: "${result.index}"`);
   }
+});
+//▲
+
+//▼2024/6/20 「マッチした文字列の一部を取得～」
+test("文字列のキャプチャリング～", () => {
+  //1)String.matchメソッドと(キャプチャリング)によって、数字(\d+)にマッチする部分のみを取り出す。
+  const swPattern = /StarWars(\d+)/;
+  const [all, capture1] = "StarWars1".match(swPattern); //分割代入 const[all,capture1,capture2]="文字列".match(/パターン(capture1)と(capture2)/)
+  expect(all).toBe("StarWars1");
+  expect(capture1).toBe("1");
+
+  //2) matchAllで返ってきた結果(Iterator)を、配列に代入する
+  const esPattern = /ES(\d+)/g;
+  const esIterator = "ES2015、ES2016、ES2017".matchAll(esPattern);
+  const result = [];
+  //for (const value of array){...} 反復処理iterateで配列の値を列挙(1つずつ出力)
+  for (const match of esIterator) {
+    result.push(match);
+  }
+  expect(result.length).toBe(3);
+  expect(result[0][0]).toBe("ES2015"); //result[0] = [[all, capture1],[all, capture2],[all, capture3]]
+  expect(result[0][1]).toBe("2015");
+  expect(result[1][0]).toBe("ES2016");
+  expect(result[1][1]).toBe("2016");
+  expect(result[2][0]).toBe("ES2017");
+  expect(result[2][1]).toBe("2017");
+
+  //3)testメソッド：電話番号がマッチするかテスト(真偽値を取得)
+  const telPattern1 = /\d{3}-\d{4}-\d{4}/; //includes
+  const telPattern2 = /^\d{3}-\d{4}-\d{4}/; //startsWith「^」先頭に一致
+  const telPattern3 = /\d{3}-\d{4}-\d{4}$/; //endsWith「$」末尾に一致
+  const telPattern4 = /^\d{3}-\d{4}-\d{4}$/; //all match
+
+  const str1 = "私の電話番号は000-0000-1111です";
+  expect(telPattern1.test(str1)).toBe(true);
+  expect(telPattern2.test(str1)).toBe(false);
+  expect(telPattern3.test(str1)).toBe(false);
+  expect(telPattern4.test(str1)).toBe(false);
+
+  const str2 = "090-0000-1111です。";
+  expect(telPattern1.test(str2)).toBe(true);
+  expect(telPattern2.test(str2)).toBe(true);
+  expect(telPattern3.test(str2)).toBe(false);
+  expect(telPattern4.test(str2)).toBe(false);
+
+  const str3 = "私の番号は090-0000-1111";
+  expect(telPattern1.test(str3)).toBe(true);
+  expect(telPattern2.test(str3)).toBe(false);
+  expect(telPattern3.test(str3)).toBe(true);
+  expect(telPattern4.test(str3)).toBe(false);
+
+  const str4 = "090-0000-1111";
+  expect(telPattern1.test(str4)).toBe(true);
+  expect(telPattern2.test(str4)).toBe(true);
+  expect(telPattern3.test(str4)).toBe(true);
+  expect(telPattern4.test(str4)).toBe(true);
+
+  //4)replace/replaceAllメソッド:文字列の置換/削除
+  const string = "ミッキーマウス";
+  expect(string.replace(/ミッキー/, "ミニー")).toBe("ミニーマウス");
+
+  const string2 = "090-0000-1111";
+  expect(string2.replace(/\d{4}/g, "****")).toBe("090-****-****");
+
+  const url = "https://jsprimer.net";
+  expect(url.replaceAll(/https/g, "http")).toBe("http://jsprimer.net");
+
+  const hello = "Hello, world!";
+  expect(hello.replaceAll(/[aiueo]/g, "*")).toBe("H*ll*, w*rld!"); //[]内どれかと一致
 });
 //▲
