@@ -8,12 +8,12 @@ test("try...catch構文・throw文", () => {
     }
   }
   checkEven(2);
-  try {
-    checkEven(3);
-  } catch (error) {
-    console.log(error.message);
-    throw new Error("catchした後", { cause: error });
-  }
+  // try {
+  //   checkEven(3);
+  // } catch (error) {
+  //   console.log(error.message);
+  //   throw new Error("catchした後", { cause: error });
+  // }
   console.log("終わりました");
 });
 //▲
