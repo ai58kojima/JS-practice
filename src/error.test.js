@@ -7,13 +7,21 @@ test("try...catch構文・throw文", () => {
       throw new Error(`${num}が偶数ではありませんでした`);
     }
   }
-  checkEven(2);
-  // try {
-  //   checkEven(3);
-  // } catch (error) {
-  //   console.log(error.message);
-  //   throw new Error("catchした後", { cause: error });
-  // }
+  //成功するケース
+  try {
+    checkEven(2);
+    console.log("偶数のチェックが成功しました");
+  } catch (error) {
+    console.error("偶数のチェックが失敗しました", error);
+  }
+
+  //失敗するケース
+  try {
+    checkEven(3);
+  } catch (error) {
+    console.log(error.message);
+    //throw new Error("catchした後", { cause: error });
+  }
   console.log("終わりました");
 });
 //▲
