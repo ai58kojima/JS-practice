@@ -25,3 +25,9 @@ test("try...catch構文・throw文", () => {
   console.log("終わりました");
 });
 //▲
+
+//▼2024/08/08 「ビルトインエラー」
+//　TypeError(型error)
+//　SyntaxError(構文error)
+//　ReferenceError(参照先error)
+//▲
