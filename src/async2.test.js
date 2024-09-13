@@ -93,5 +93,76 @@ test("Promise.rejectの練習", () => {
 
   return expect(errorStep).rejects.toThrow("最終エラー");
 });
+//▲
 
+//▼2024/08/29 「[ES2018] Promiseチェーンの最後に処理を書く~」
+test("逐次処理", () => {
+  //逐次処理:複数の処理を順番に行うこと
+  function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (path.startsWith("/resource")) {
+          resolve({ body: `Response body of ${path}` });
+        } else {
+          reject(new Error("NOT FOUND"));
+        }
+      }, 1000 * Math.random());
+    });
+  }
+  const results = [];
+  // Resource Aを取得する
+  const req1 = dummyFetch("/resource/A")
+    .then((response) => {
+      results.push(response.body);
+      // Resource Bを取得する
+      return dummyFetch("/resource/B");
+    })
+    .then((response) => {
+      results.push(response.body);
+    })
+    .then(() => {
+      console.log(results);
+    });
+  // Resource Cを取得する
+  const req2 = dummyFetch("/resource/C").then((response) => {
+    results.push(response.body);
+  });
+
+  Promise.all([req1, req2]).then(function (values) {
+    console.log(results); // => [ 'Response body of /resource/A','Response body of /resource/C','Response body of /resource/B' ]
+  });
+});
+
+//逐次処理とpromise.all()の練習
+test("逐次処理の練習", () => {
+  //数字を10回まで順番にカウントしている。Math.random()分を順番に処理を実行している
+  let promise = Promise.resolve(0);
+  for (let i = 0; i < 10; i++) {
+    promise = promise.then((num) => {
+      const random = Math.random();
+      const newNum = random + num;
+      if (newNum > 1) {
+        return num;
+      } else {
+        return newNum;
+      }
+    });
+  }
+  expect(promise).resolves.toBeLessThan(1);
+});
+
+test("promise.all()の練習", () => {
+  //Promise.resolve(Math.random()) を10個用意する
+  //その値をPromise.allで取り出してすべて合計すると１0以下になることを確認する
+  const promises = [];
+  for (let i = 0; i < 10; i++) {
+    promises.push(Promise.resolve(Number(Math.random())));
+  }
+  const total = Promise.all(promises).then((numbers) => {
+    return numbers.reduce((sum, num) => {
+      return sum + num;
+    });
+  });
+  return expect(total).resolves.toBeLessThan(10);
+});
 //▲
