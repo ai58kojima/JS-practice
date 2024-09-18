@@ -1,5 +1,7 @@
 //▼2024/09/05 「Promise実用編とasync awaitの概念」
 // kintoneのAPIを投げてPromiseを使っているケースを見てみる→開発ツールのネットワーク参照
+// https://cybozu.dev/ja/kintone/docs/js-api/api/kintone-rest-api-request/
+
 // ■ 非同期処理
 (() => {
   function callApi(ID) {
