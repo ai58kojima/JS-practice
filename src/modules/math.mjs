@@ -1,11 +1,12 @@
-export const double = (num) => {
+const double = (num) => {
   return num * 2;
 };
-export const isEven = (num) => {
+const isEven = (num) => {
   return num % 2 === 0;
 };
-export const remainder = (a, b) => {
+const remainder = (a, b) => {
   //余り
   return a % b;
 };
-// export { double, isEven, remainder as remainderWithN };
+
+export { double, isEven, remainder };
