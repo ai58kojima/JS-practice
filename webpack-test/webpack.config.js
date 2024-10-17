@@ -7,6 +7,7 @@ module.exports = {
   entry: {
     index: "./src/index.js",
     print: "./src/print.js",
+    kintone: "./src/kintone.js",
   },
   module: {
     rules: [
