@@ -19,6 +19,7 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "@kintone/rest-api-client": "^5.6.0",
     "lodash": "^4.17.21"
   }
 }
