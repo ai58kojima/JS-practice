@@ -3,7 +3,7 @@ import {
   double,
   isEven,
   remainder as remainderWithN,
-} from "./modules/math.mjs"; // remainder変数をremainderWithNとして名前付エクスポート
+} from "./modules/math.mjs"; // remainder変数をremainderWithNとして名前付インポート
 
 // 名前付き import, export を練習してみる
 // ・同一のファイル(.mjsファイル）
@@ -18,4 +18,4 @@ const remainder = (num) => {
   return remainderWithN(num, 2);
 };
 console.log(remainder(4)); //4%2= 2余0 //remainderWithN(5, 2)
-console.log(remainder(7)); //7%2=3余1
+console.log(remainder(7)); //7%2= 3余1
