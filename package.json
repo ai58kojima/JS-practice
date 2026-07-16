@@ -2,7 +2,7 @@
   "name": "js-practice",
   "version": "1.0.0",
   "type": "module",
-  "description": "",
+  "description": "JavaScript Primerテキストに沿って、基礎学習→実践を行う\r 週１開催（宿題あり）",
   "main": "index.js",
   "scripts": {
     "test": "jest",
@@ -26,5 +26,16 @@
     "chart.js": "^4.4.2",
     "date-fns-tz": "^2.0.1",
     "react-chartjs-2": "^5.2.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ai58kojima/JS-practice.git"
+  },
+  "keywords": [
+    "Pasona123"
+  ],
+  "bugs": {
+    "url": "https://github.com/ai58kojima/JS-practice/issues"
+  },
+  "homepage": "https://github.com/ai58kojima/JS-practice#readme"
 }
